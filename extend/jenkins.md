@@ -10,7 +10,7 @@
 &emsp;&emsp;然后新建一个群组。群组编码作为群组的唯一标示，后续需要使用。群组名称随意填写。
 
 &emsp;&emsp;创建成功之后点击群组上的“查看二维码”，将二维码发给需要加入群组的同事。以后推送的消息加入群组的用户都会收的到。在“订阅人”中可以主动的移除不想要的用户。
-![群组](./images/group1.png)
+![群组](../images/group1.png)
 
  &emsp;&emsp;最后需要您的token和群组编码，在后续jenkins配置中使用。
 
@@ -22,11 +22,11 @@
 
 &emsp;&emsp;安装完成之后，需要重启jenkins，让插件生效。
 
-![](./images/jenkins3.jpg)
+![](../images/jenkins3.jpg)
 
 &emsp;&emsp;重启jenkins后，在插件管理->已安装 中能找到“pushPlus Plugin”就代表安装成功啦！
 
-![](./images/jenkins4.jpg)
+![](../images/jenkins4.jpg)
 
 #### 3. 配置jenkins
  &emsp;&emsp;插件安装完成之后还需要配置一些参数，才能正常推送消息。
@@ -37,7 +37,7 @@
 
 - 您的Token 指的是pushplus分配给您的用户token或者消息token，请到pushplus网站上获取，请务必填写正确
 
-![](./images/jenkins5.jpg)
+![](../images/jenkins5.jpg)
 
  &emsp;&emsp;然后就可以到您的具体构建任务中配置了。在构建后操作中把plusplus增加进来，然后填入您自己的群组编码，保存即可。
 
@@ -52,11 +52,11 @@ post {
        }
    }
 ```
-![](./images/jenkins6.jpg)
+![](../images/jenkins6.jpg)
 
 &emsp;&emsp;然后就可以正常使用了。jenkins构建以后，微信上就会收到构建结果的推送消息了。点击消息内容，直接打开您的jenkins构建日志，方便排查构建结果。
 
-![](./images/jenkins7.jpg)
+![](../images/jenkins7.jpg)
 
 
 ## 实现原理

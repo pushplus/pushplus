@@ -32,15 +32,15 @@
 
 **唯一微信公众号：** \
  &nbsp;&nbsp;&nbsp; pushplus 推送加 \
-![微信公众号](./images/pushplus_mp.jpg)
+![微信公众号](../images/pushplus_mp.jpg)
 
 **官方QQ交流群：**\
-一群：28619686 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=t9IbRihvvusEIo7r6bgz-7QgEPOaH0OU&jump_from=webapi">![pushplus用户交流群](./images/group.png)</a> \
-二群：161672256 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=NQsL2uotO-d-i2uMYa-HiypRHc7IIs2z&jump_from=webapi">![pushplus用户交流2群](./images/group.png)</a> 
+一群：28619686 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=t9IbRihvvusEIo7r6bgz-7QgEPOaH0OU&jump_from=webapi">![pushplus用户交流群](../images/group.png)</a> \
+二群：161672256 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=NQsL2uotO-d-i2uMYa-HiypRHc7IIs2z&jump_from=webapi">![pushplus用户交流2群](../images/group.png)</a> 
 
 
 **官方微信交流群：** \
-![加好友拉微信群](./images/wechat.png)
+![加好友拉微信群](../images/wechat.png)
 
 加好友备注“加微信群”，通过后才会主动拉你入群。
 

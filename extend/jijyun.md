@@ -24,38 +24,38 @@
 
 #### 一. 访问集简云官网
 打开[集简云官网](https://www.jijyun.cn/apps/),点击登录。登录后在数据流程中创建一个新的流程。
-![](./images/jijyun1.jpg)
+![](../images/jijyun1.jpg)
 
 #### 二. 创建触发动作步骤
 1. 在流程中选择webhook应用，触发动作为“当接收到数据时”。会获取到一个webhook的URL地址，这个地址保存下来，后续填写到pushplus的配置中。
 
-![](./images/jijyun8.png)
+![](../images/jijyun8.png)
 
 2. 在pushplus微信公众号的菜单中点击“功能”->“个人中心”->"渠道配置",新增一个webhook渠道。
 3. 在webhook渠道中“请求地址”填写上一步获取的webhook地址。“webhook”类型选择集简云。
 
-![](./images/jijyun4.png)
+![](../images/jijyun4.png)
 
 4. 保存后在官网中发送一条测试数据。注意发送渠道选择刚刚配置的webhook渠道。
 
-![](./images/jijyun3.jpg)
+![](../images/jijyun3.jpg)
 
 5. 发送成功后，集简云中就会获取到推送的数据格式，从而可以在字段匹配流程中使用请求的内容参数。
 
-![](./images/jijyun6.png)
+![](../images/jijyun6.png)
 
 6. 在集简云中点击获取样本数据，就会收到样本数据。触发动作就配置好了。
 
-![](./images/jijyun2.png)
+![](../images/jijyun2.png)
 
 #### 三、配置执行动作步骤
 1. 然后在执行动作中选择应用“企业微信（代开发），执行动作是“发送文本信息给员工（基础账号）”。然后需要扫码将自己的企业微信中创建一个第三方应用。
 
-![](./images/jijyun9.png)
+![](../images/jijyun9.png)
 
 2. 保存后进入字段匹配，企业员工Id可以填入@all，给全员发送。内容设置webhook推送的内容字段。
 
-![](./images/jijyun7.png)
+![](../images/jijyun7.png)
 
 3. 然后可以在发送数据中进行测试，如果能够成功收到消息说明配置就正确了，保存流程即可。
 

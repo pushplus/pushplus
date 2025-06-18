@@ -212,9 +212,9 @@ pay | 支付成功通知模板
 - 说明：当template参数为json并且放在body中的时候，pushplus会解析content中的json格式内容，以更加友好的方式展示出来。如template参数放在url地址上，会将整个body内容视为content进行解析，具体见下面的例子。
 - json模板和html模板效果对比\
 
-![json模板](./images/json.png)
+![json模板](../images/json.png)
 <br/>
-![html模板](./images/html.png)
+![html模板](../images/html.png)
 
 #### 示例五，webhook的例子
 - 请求地址：http://www.pushplus.plus/send/{token}?template=json
@@ -260,7 +260,7 @@ pay | 支付成功通知模板
 }
 ```
 - 说明：需要先配置对应的第三方webhook，如本例中的编码pushplus即为预先配置好的企业微信机器人。同理也可以配置钉钉机器人、飞书机器人等。<br/>
-![webhook参数](./images/webhook.png)
+![webhook参数](../images/webhook.png)
 
 #### 示例八，企业微信应用的例子
 - 请求地址：http://www.pushplus.plus/send
@@ -277,7 +277,7 @@ pay | 支付成功通知模板
 }
 ```
 - 说明：需要先配置对应的企业微信应用，在webhook字段中填入配置好的企业微信编码，如本例子中的cp。<br/>
-![企业微信应用参数](./images/cp.png)
+![企业微信应用参数](../images/cp.png)
 
 #### 示例九，增加时间戳的例子
 - 请求地址：http://www.pushplus.plus/send
@@ -356,4 +356,4 @@ pay | 支付成功通知模板
 }
 ```
 - 说明：定义的预处理编码(appendMsg)是让消息内容后增加“追加的内容”这几个字。<br/>
-![预处理信息](./images/pre2.png)
+![预处理信息](../images/pre2.png)

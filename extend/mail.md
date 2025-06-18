@@ -7,30 +7,30 @@
 ## 二、邮箱配置方式
 - 点击在“pushplus 推送加”公众号菜单里面的“功能”->“个人中心”。
 - 在打开的“pushplus推送加”小程序中点击“个人资料”。\
-![](./images/mail1.jpg)
+![](../images/mail1.jpg)
 
 - 在“个人资料”中点击“邮箱”，打开邮箱绑定页面。\
-![](./images/mail2.jpg)
+![](../images/mail2.jpg)
 
 - 输入自己的“邮箱地址”，系统会发送一份验证邮件到绑定的邮箱中。\
-![](./images/mail3.jpg)
+![](../images/mail3.jpg)
 
 - 登录自己的邮箱，点击验证邮件正文中的链接。\
-![效果2](./images/mail4.jpg)
+![效果2](../images/mail4.jpg)
 
 - 提示邮箱验证成功，即表示邮箱配置完成。\
-![](./images/mail5.jpg)
+![](../images/mail5.jpg)
 
 ## 三、自定义邮件渠道
 默认使用的是pushplus官网的邮件渠道来发送邮件。如需要使用自定义的邮箱来发送消息，可以在渠道配置中新增自己的邮箱。\
 在个人中心->渠道配置->邮件->新增，来添加自定义的邮箱配置。\
-![](./images/mail1.png)
+![](../images/mail1.png)
 
 从邮件服务商处找到smtp服务器相关的配置后填写。发送测试邮件会发一份测试邮件到配置的账户邮件地址上。\
-![](./images/mail2.png)
+![](../images/mail2.png)
 
 可以在个人中心->功能设置->默认推送渠道，修改默认推送为邮件。\
-![](./images/mail3.png)
+![](../images/mail3.png)
 
 
 

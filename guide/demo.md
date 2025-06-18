@@ -17,7 +17,7 @@
 #pushplus的相关参数
 TOKEN="你的token"
 TITLE="测试工单"
-CONTENT="消息的内容<br/>![](./images/push.png)"
+CONTENT="消息的内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />"
 URL="https://www.pushplus.plus/send/"
 
 # 定义文件用于记录是否已经发送过通知
@@ -96,9 +96,9 @@ requests.post(url,data=body,headers=headers)
 ```
 
 - 运行后效果\
-![效果1](./images/message.jpg)
+![效果1](../images/message.jpg)
 
-![效果2](./images/message2.jpg)
+![效果2](../images/message2.jpg)
 
 - 说明\
 更多参数用法请查看pushplus接口文档
@@ -126,7 +126,7 @@ public class PushControllerTest {
         if(limit!=1){
             String token= "您的token"; //您的token
             String title= "标题";  //消息的标题
-            String content= "内容<br/>![](./images/push.png)";  //消息的内容,包含文字、换行和图片
+            String content= "内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />";  //消息的内容,包含文字、换行和图片
             String url = "https://www.pushplus.plus/send?title="+ title +"&content="+ content +"&token=" + token;
 
             //服务器发送Get请求，接收响应内容
@@ -160,7 +160,7 @@ public class PushControllerTest {
         if(limit!=1){
             String token= "您的token"; //您的token
             String title= "标题";  //消息的标题
-            String content= "内容<br/>![](./images/push.png)";  //消息的内容
+            String content= "内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />";  //消息的内容
             String url = "https://www.pushplus.plus/send/";
 
             Map<String,Object> map = new HashMap<>();

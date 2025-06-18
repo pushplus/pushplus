@@ -29,17 +29,17 @@ armsoft开源项目地址：[https://github.com/koolshare/armsoft](https://githu
 1. 在软件中心里面找到并安装“pushplus全能推送”。
 
 
-![](./images/r1.jpg)
+![](../images/r1.jpg)
 
 2. 在软件的基础设置中开启pushplus，然后填入自己的用户token或消息token，点击“提交”保存配置。
 
 
-![](./images/r2.jpg)
+![](../images/r2.jpg)
 
 3. 配置完成，可以点击“手动推送”进行测试是否可以正常收到路由器的推送消息。
 
 
-![](./images/r3.jpg)
+![](../images/r3.jpg)
 
 
 ## 实现原理

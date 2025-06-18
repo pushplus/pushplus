@@ -7,9 +7,9 @@
 　&emsp;&emsp;在微信或支付宝支付回调接口中通过代码调用pushplus的发送消息接口，来实现微信公众号的模板消息提醒功能。\
 效果如下：
 
-![收款成功通知](./images/pay1.png)
+![收款成功通知](../images/pay1.png)
 
-![收款详情](./images/pay2.png)
+![收款详情](../images/pay2.png)
 
 #### 请求示例，POST方式推送消息
 - 请求地址：http://www.pushplus.plus/send/

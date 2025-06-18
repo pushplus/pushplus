@@ -10,7 +10,7 @@
 
 2. 触发时间选择应用“Webhook”，选择触发点击“接收数据”，在配置参数中会获取一个“Webhook地址”。需要使用这个地址填入pushplus的渠道配置中。
 
-![](./images/hiflow1.png)
+![](../images/hiflow1.png)
 
 3. 打开“pushplus 推送加”的公众号，进入公众号菜单上的“功能”->“个人中心”->“渠道配置”->“webhook”。在“webhook”标签页中点击右上角的“新增”按钮。新增一个webhook配置。\
 填写具体的信息:
@@ -19,7 +19,7 @@
 - 请求地址：填写上一步获取到的“Webhook地址”；
 - webhook类型：下拉选择“HiFlow场景连接器”。
 
-![](./images/hiflow2.png)
+![](../images/hiflow2.png)
 
 4. 可以在官网上发送一个消息请求，选择刚新增的webhook渠道。发送完成后，回到HiFlow的流程中继续配置。
 
@@ -29,7 +29,7 @@
 
 7. 在执行操作中新增“阿里云短信”应用，选择“发送短信”操作，然后配置好自己的账号。在配置参数中可以将“webhook”中获取的样本数据字段作为变量填入短信模板中使用。
 
-![](./images/hiflow3.png)
+![](../images/hiflow3.png)
 
 #### 二、接口中使用示例
 　&emsp;&emsp;接口上与微信渠道不同的是新增了两个参数。一个channel参数，填写固定值webhook；另一个webhook参数，填写上一步配置中自己定义的webhook编码。
@@ -70,4 +70,4 @@
 　&emsp;&emsp;除了可以通过webhook来触发HiFlow的流程以外，pushplus也集成到了HiFlow的流程中，成为了一款应用，并提供了大量功能。配置账号的时候需要先在pushplus的“开发设置”中配置好密钥等信息。具体落地应用场景请自行研究探索。\
 访问地址：<a href="https://hiflow.tencent.com/apps/details/pushplus/" target="_blank">https://hiflow.tencent.com/apps/details/pushplus/</a>
 
- ![](./images/hiflow.png)
+ ![](../images/hiflow.png)

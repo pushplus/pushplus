@@ -19,14 +19,14 @@ ALTER TABLE `xxl_job_info`
 2. 从pushplus官方（[https://www.pushplus.plus/](https://www.pushplus.plus/) ）获取自己的token，如需要多人接收还需创建群组，获取群组编码。
 3. 在application.properties中pushplus.token填入自己的token。如需群发在pushplus.topic填入创建的群组编码。
 
-![项目设置](./images/project.png)
+![项目设置](../images/project.png)
 
 5. 编译perk-job-admin项目，打成jar包。
 6. 运行项目，命令：nohup java -jar perk-job-admin-2.3.0.jar > /dev/null 2>&1&
 7. 访问系统，正常创建需要的定时任务。在任务详情页面勾选“pushplus推送”选项。
 
-![任务](./images/job.png)
+![任务](../images/job.png)
 
 8. 当job执行时发生异常，微信上即可收到来自“pushplus 推送加”公众号上的告警消息。
 
-![推送](./images/pushplus.png)
+![推送](../images/pushplus.png)

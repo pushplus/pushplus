@@ -7,7 +7,7 @@ pushplus支持在内容中发送图片信息。具体方式通过html的\<img\>�
 {
     "token":"{token},
     "title":"标题",
-    "content":"内容<br/>![](./images/push.png)",
+    "content":"内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />",
     "topic":"test"
 }
 ```

@@ -4,7 +4,7 @@
 > **官网：[www.pushplus.plus](https://www.pushplus.plus)** \
 > **微信公众号：pushplus 推送加** \
 > **QQ交流群：28619686 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=t9IbRihvvusEIo7r6bgz-7QgEPOaH0OU&jump_from=webapi">![pushplus用户交流群](./images/group.png)</a>** \
-> **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161672256 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=NQsL2uotO-d-i2uMYa-HiypRHc7IIs2z&jump_from=webapi">![pushplus用户交流2群](./images/group.png)</a>** \
+> **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161672256 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=NQsL2uotO-d-i2uMYa-HiypRHc7IIs2z&jump_from=webapi">![pushplus用户交流2群](./images/group.png)</a>** 
 
 ## 引言
 　&emsp;&emsp;pushplus(推送加)是一个集成了微信、短信、邮件、企业微信、、腾讯轻联、钉钉、飞书、bark、gotify、集简云等实时消息推送平台。只需要调用简单的API，即可帮您迅速完成消息的推送，使用简单方便。

@@ -7,7 +7,7 @@
 #### 一、配置IFTTT
 　&emsp;&emsp;这边以配置触发器为webhook，动作为增加一个ios提醒为例。
 
-![](./images/if2.png)
+![](../images/if2.png)
 
 1. 打开IFTTT官网，登录网站后，点击右上角的“Create”创建一个自己的应用。
 2. 点击“If This”中的“add”，然后搜索“webhooks”,选择“Receive a web request”,然后输入一个自定义的事件名称，比如“pushplus”，这个会用于后续webhook请求地址中的变量;完成后点击“Create trigger”。
@@ -16,14 +16,14 @@
 - vaule2: pushplus消息的内容
 - value3: pushplus消息的链接地址
 
-![](./images/if1.png)
+![](../images/if1.png)
 
 4. 获取自己的webhook请求地址
 IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key/{key} 
 - 其中{event}是上一步创建的“webhooks”的事件名称
 - {key}是系统自动生成的，可以在 https://ifttt.com/maker_webhooks/settings 中找到“URL”,点击链接地址后，会打开一个webhook请求说明页面，里面就有请求地址。
  
- ![](./images/if3.png)
+ ![](../images/if3.png)
 
 #### 二、在pushplus中配置webhook
 1. 打开“pushplus 推送加”的公众号，进入公众号菜单上的“功能”->“个人中心”->“渠道配置”->“webhook”
@@ -34,7 +34,7 @@ IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key
 - 请求地址：填写从IFTTT网站中配置的地址；
 - webhook类型：下拉选择“IFTTT”。
 
-![](./images/ifttt.png)
+![](../images/ifttt.png)
 
 4. 保存完成上述步骤后，相关的配置就完成了。可以在消息发送接口中使用了。
 
@@ -66,5 +66,5 @@ IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key
 ```
 其中value1代表标题，value2代表内容，value3代表消息链接地址。可以在IFTTT的后续动作中使用这三个变量值。
 
-![](./images/if5.png)
+![](../images/if5.png)
  
