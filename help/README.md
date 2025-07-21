@@ -4,6 +4,7 @@
 
 ## 常见问题列表，可解决90%的问题
 
+- [Get请求导致的问题](/help/get.md)
 - [实名认证相关问题](/help/verify.md)
 - [用户token和消息token有什么区别](/help/token.md)
 - [发送消息接口限制](/help/limit.md)

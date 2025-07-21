@@ -1,7 +1,7 @@
-# pushplus 消息接口文档 V1.10.0
+# pushplus 消息接口文档 V1.10.1
 
-> 1.10.0 接口更新日期：2025-05-09\
-> 增加消息令牌描述
+> 1.10.1 接口更新日期：2025-05-09\
+> 增加GET和POST请求差异说明
 >
 > 1.9.0 接口更新日期：2024-08-26\
 > 增加预处理编码(pre)字段
@@ -163,7 +163,8 @@ pay | 支付成功通知模板
 #### 示例一，最简单的例子
 - 请求地址：http://www.pushplus.plus/send?token={token}&content=pushplus消息内容
 - 请求方式: GET
-- 说明：具体使用的时候将请求地址上的{token}替换成自己的用户token或消息token。content中如包含中文需要UrlEncode编码处理下。
+- 说明：具体使用的时候将请求地址上的{token}替换成自己的用户token或消息token。content中如包含中文需要UrlEncode编码处理下。\
+GET请求受限于URL长度，content参数内容不宜太长。大段内容请使用post请求！
 
 #### 示例二，POST方式推送消息
 - 请求地址：http://www.pushplus.plus/send/

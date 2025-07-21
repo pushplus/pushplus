@@ -59,6 +59,7 @@
 
 ### 常见问题
 - [常见问题](/help/) - 使用帮助和常见问题
+- [Get请求导致的问题](/help/get.md) - Get请求问题
 - [实名认证相关问题](/help/verify.md) - 验证功能说明
 - [用户token和消息token有什么区别](/help/token.md) - Token使用说明
 - [发送消息接口限制](/help/limit.md) - 使用限制说明
