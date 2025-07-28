@@ -68,7 +68,7 @@ pre | 否 | 无 | 预处理编码。仅供会员使用。可提前自定义代�
 发送渠道 | 是否免费 | 描述
 ---| --- |--|
 wechat | 免费 | 微信公众号
-webhook | 免费 | 第三方webhook；HiFlow连接器、企业微信、钉钉、飞书、server酱、IFTTT；[webhook机器人推送](../extend/webhook/)
+webhook | 免费 | 第三方webhook渠道；企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、server酱、IFTTT、WxPusher；[webhook机器人推送](../extend/webhook/)
 cp | 免费 | 企业微信应用；具体参考[企业微信应用推送](../extend/cp/)
 mail | 免费 | 邮箱；具体参考[邮件渠道使用说明](../extend/mail/)
 sms | 收费 | 短信；成功发送1条短信需要10积分（0.1元）
