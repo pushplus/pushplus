@@ -53,10 +53,12 @@
 
 ### 扩展应用
 - [xxl-job推送设置](/extend/xxl-job.md) - XXL-Job集成
-- [调用IFTTT的webhook](/extend/ifttt.md) - IFTTT集成
 - [推送到企业微信机器人教程](/extend/cpbot.md) - 企业微信机器人配置
+- [推送到钉钉机器人教程](/extend/dingding.md) - 钉钉机器人配置
+- [推送到飞书机器人教程](/extend/feishu.md) - 飞书机器人配置
 - [通过腾讯轻联实现发送短信](/extend/hiflow.md) - 腾讯轻联集成
 - [通过集简云发送企业微信消息](/extend/jijyun.md) - 集简云集成
+- [调用IFTTT的webhook](/extend/ifttt.md) - IFTTT集成
 
 ### 常见问题
 - [常见问题](/help/) - 使用帮助和常见问题

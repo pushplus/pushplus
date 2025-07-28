@@ -20,15 +20,15 @@
 | Webhook类型 | 请求地址示例 |  配置教程 |
 | --| --| --|
 | 企业微信机器人 | https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={自己的值}  | [pushplus推送到企业微信机器人教程](/extend/cpbot.md) |
-| 钉钉机器人 | https://oapi.dingtalk.com/robot/send?access_token={自己的值} | 无 |
-| 飞书机器人 | https://open.feishu.cn/open-apis/bot/v2/hook/{自己的值} | 无 | 
-| bark | {自己的值} | 无|
-| Gotify | {自己的值} | 无|
+| 钉钉机器人 | https://oapi.dingtalk.com/robot/send?access_token={自己的值} | pushplus推送到钉钉机器人教程](/extend/dingding.md) |
+| 飞书机器人 | https://open.feishu.cn/open-apis/bot/v2/hook/{自己的值} |  [pushplus推送到飞书机器人教程](/extend/feishu.md) | 
+| bark | https://api.day.app/{自己的值}| 暂无|
+| Gotify | https://{自建服务器地址}/message?token={自己的值} | 暂无|
 | 腾讯轻联 | webhook生成的地址 | [通过腾讯轻联实现发送短信](/extend/hiflow.md) |
 | 集简云 | https://hook.jijyun.cn/v1/accept/data/webhook_accept_first?apikey={自己的值} | [通过集简云发送企业微信应用消息](/extend/jijyun.md) |
 | IFTTT | https://maker.ifttt.com/use/{自己的值} | [调用IFTTT的webhook触发器教程](/extend/ifttt.md) |
-| Server酱 | https://sctapi.ftqq.com/{自己的值}.send | 无 |
-| WxPusher | https://wxpusher.zjiecode.com/api/send/message/?appToken={自己的值} | 无 |
+| Server酱 | https://sctapi.ftqq.com/{自己的值}.send | 暂无 |
+| WxPusher | https://wxpusher.zjiecode.com/api/send/message/?appToken={自己的值} | 暂无 |
 
 - 注意：请求地址示例中需要将“{自己的值}”替换为从第三方系统中获取到的值，且无需“{}”符号！具体地址以第三方系统中提供的为准。
 
