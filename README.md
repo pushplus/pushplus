@@ -7,7 +7,7 @@
 > **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161672256 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=NQsL2uotO-d-i2uMYa-HiypRHc7IIs2z&jump_from=webapi">![pushplus用户交流2群](./images/group.png)</a>** 
 
 ## 引言
-　&emsp;&emsp;pushplus(推送加)是一个集成了微信、短信、邮件、企业微信、、腾讯轻联、钉钉、飞书、bark、gotify、集简云等实时消息推送平台。只需要调用简单的API，即可帮您迅速完成消息的推送，使用简单方便。
+　&emsp;&emsp;pushplus(推送加)是一个集成了微信、短信、邮件、企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云等渠道的实时消息推送平台。只需要调用简单的API，即可帮您迅速完成消息的推送，使用简单方便。
 
 ## 开发的目的
 　&emsp;&emsp;pushplus的目的就是大幅简化消息类推送功能的开发。像是微信公众号的主动推送技术上并不复杂，但是需要认证服务号，备案的域名。这就导致了个人用户与模板消息无缘。而很多时候开发者也只需要一个简单的提醒功能，单独去维护一个推送项目，成本太大，所以pushplus就是为了解决这些用户的痛点，为帮助普通用户和开发者而来的。
