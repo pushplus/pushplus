@@ -7,11 +7,11 @@
 
 发送渠道 | 是否免费 | 描述 | 使用教程
 ---| --- |--- | --- | 
-wechat | 免费 | 微信公众号渠道 | [绑定自己的公众号](../extend/mp.html)
-webhook | 免费 | 第三方webhook渠道；企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、server酱、IFTTT、WxPusher；| [webhook渠道配置](../extend/webhook.html)
-cp | 免费 | 企业微信应用渠道 | [企业微信应用配置](../extend/cp.html)
-mail | 免费 | 邮箱渠道 | [邮件渠道使用说明](../extend/mail.html)
-sms | 收费 | 短信渠道。成功发送1条短信需要10积分（0.1元） | [短信渠道配置](../extend/sms.html)
+wechat | 免费 | 微信公众号渠道 | [绑定自己的公众号](../extend/mp.md)
+webhook | 免费 | 第三方webhook渠道；企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、server酱、IFTTT、WxPusher；| [webhook渠道配置](../extend/webhook.md)
+cp | 免费 | 企业微信应用渠道 | [企业微信应用配置](../extend/cp.md)
+mail | 免费 | 邮箱渠道 | [邮件渠道使用说明](../extend/mail.md)
+sms | 收费 | 短信渠道。成功发送1条短信需要10积分（0.1元） | [短信渠道配置](../extend/sms.md)
 
 ## 请求示例
 

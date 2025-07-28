@@ -11,10 +11,10 @@ html | 默认模板，支持html文本 |
 txt | 纯文本展示，不转义html |
 json | 内容基于json格式展示 |
 markdown | 内容基于markdown格式展示 | 
-cloudMonitor | 阿里云监控报警定制模板 | [阿里云监控](../extend/cloudMonitor.html)
-jenkins | jenkins插件定制模板 | [jenkins插件](../extend/jenkins.html)
-route | 路由器插件定制模板 | [路由器插件](../extend/route.html)
-pay | 支付成功通知模板 | [支付成功模板教程](../extend/pay.html)
+cloudMonitor | 阿里云监控报警定制模板 | [阿里云监控](../extend/cloudMonitor.md)
+jenkins | jenkins插件定制模板 | [jenkins插件](../extend/jenkins.md)
+route | 路由器插件定制模板 | [路由器插件](../extend/route.md)
+pay | 支付成功通知模板 | [支付成功模板教程](../extend/pay.md)
 
 ## 请求示例
 
