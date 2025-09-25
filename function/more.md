@@ -18,7 +18,7 @@
 ### 一. 网页上发送消息
 　&emsp;&emsp;可以在pushplus官网上点击“发送消息”->“一对多消息”进入功能页面。在“试一试”中填入群组编码、消息标题和消息内容，点击“发送消息”按钮来发起一条推送请求。注意，推送请求成功并不代表就会推送消息，又可能因为配置或账号等原因不会真的发送消息。需要根据返回的消息流水号来查询消息的最终发送结果。当然如果您在pushplus公众号中接收到一条刚刚推送的消息内容，也就代表成功了！
 
-<a data-fancybox title="" href="//image.pushplus.plus/doc/img/msg.png"><img src="//image.pushplus.plus/doc/img/msg.png" alt=""></a>
+![](../images/msg.png)
 
 ### 二. 使用API调用
 　&emsp;&emsp;网页上只是测试验证，确保功能上是可用的。实际使用中还是需要通过接口来推送消息。
