@@ -19,7 +19,8 @@
 - [联系我们](/introduce/contact.md) - 联系方式
 
 ### 使用教程
-- [发送消息](/function/one.md) - 一对一推送功能
+- [一对一消息](/function/one.md) - 一对一推送功能
+- [一对多消息](/function/more.md) - 一对多推送功能
 - [好友消息](/function/friend.md) - 好友功能介绍
 - [文本命令](/function/txt.md) - 文本处理功能
 - [会员功能](/function/vip.md) - 会员特权功能
