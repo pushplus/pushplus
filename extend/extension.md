@@ -8,20 +8,24 @@
 ## 安装
 　&emsp;&emsp;浏览器插件可以在chrome应用商店中搜索“pushplus”进行安装。或者直接下载手动安装。
 
-### chrome应用商店
-1. 访问chrome应用商店
-2. 点击“添加至Chrome”
-
-### Edge浏览器扩展市场
-1. 访问Edge扩展项
-2. 点击“获取”
-
 ### 手动安装
 1. 下载后将压缩包，下载地址：[https://pcstx.lanzouq.com/iCF9F37rl7ri](https://pcstx.lanzouq.com/iCF9F37rl7ri)
 2. 打开浏览器的扩展程序管理页面。chrome浏览器地址：[chrome://extensions/](chrome://extensions/)，edge浏览器地址：[edge://extensions/](edge://extensions/)
 3. 将下载好的压缩包直接拖入到页面上即可完成安装。
 
 ![](../images/extension.png)
+
+### chrome应用商店
+1. 访问chrome应用商店：[pushplus 推送加插件](https://chromewebstore.google.com/detail/pushplus-%E6%8E%A8%E9%80%81%E5%8A%A0/hcohnbbbchgmkjbbpnekdmhaejinpimh?hl=zh-CN&authuser=0)
+2. 点击“添加至Chrome”
+
+![](../images/chrome.png)
+
+### Edge浏览器扩展市场
+1. 访问Edge扩展项：[pushplus 推送加插件](https://microsoftedge.microsoft.com/addons/detail/pushplus-%E6%8E%A8%E9%80%81%E5%8A%A0/ekidpillenhajafdnbjnnfbolnmfhgep?hl=zh-CN)
+2. 点击“获取”
+
+![](../images/edge.png)
 
 ## 使用
 ### 首次使用
