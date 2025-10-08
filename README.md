@@ -44,7 +44,7 @@
 - [webhook渠道配置](/extend/webhook.md) - WebHook集成
 - [邮件渠道配置](/extend/mail.md) - 邮件集成
 - [企业微信应用配置](/extend/cp.md) - 企业微信集成
-- ['浏览器插件使用教程'](/extend/extension.md) - 浏览器插件
+- [浏览器插件使用教程](/extend/extension.md) - 浏览器插件
 
 ### 消息模板
 - [消息模板说明](/template/) - 消息模板中心
