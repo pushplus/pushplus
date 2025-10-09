@@ -4,19 +4,20 @@
 　&emsp;&emsp;Jenkins作为开发必备之神器，各家大小公司都在使用。Jenkins自身内置了基于邮件推送构建结果的功能。但是随着移动互联网的发展，邮件这玩意已经越来越少使用了，是否有一种办法能把Jenkins构建结果直接推送到微信上，方便查看的工具呢。找了半天并没有找到一款太理想的工具，于是便自己开发了一款Jenkins插件来实现这样的功能。分享给大家，一起来使用！
 
 ## 使用步骤
-#### 1. 获取token和群组编码
+### 1. 获取token
 &emsp;&emsp;访问网址：[http://www.pushplus.plus/push2.html](http://www.pushplus.plus/push2.html)   使用微信扫码即可登陆。
 
-&emsp;&emsp;然后新建一个群组。群组编码作为群组的唯一标示，后续需要使用。群组名称随意填写。
+### 2. 创建群组（可选配置）
+&emsp;&emsp;如果需要推送给多个人，可以使用pushplus的一对多消息来实现。新建一个群组。群组编码作为群组的唯一标示，后续需要使用。群组名称随意填写。
 
 &emsp;&emsp;创建成功之后点击群组上的“查看二维码”，将二维码发给需要加入群组的同事。以后推送的消息加入群组的用户都会收的到。在“订阅人”中可以主动的移除不想要的用户。
 ![群组](../images/group1.png)
 
  &emsp;&emsp;最后需要您的token和群组编码，在后续jenkins配置中使用。
 
-#### 2. 安装jenkins插件
-&emsp;&emsp;目前插件并没有发布到jenkins的官方插件库中，所以需要手动下载安装。后续我们将会推送到官方插件库中。\
-&emsp;&emsp;jenkins插件下载地址：百度网盘：[https://pan.baidu.com/s/1MON44GtnTNvxnqjtkb2oJg](https://pan.baidu.com/s/1MON44GtnTNvxnqjtkb2oJg) 提取码: x2u2
+### 3. 安装jenkins插件
+&emsp;&emsp;目前插件并没有发布到jenkins的官方插件库中，所以需要手动下载安装。\
+&emsp;&emsp;jenkins插件v1.4下载地址：[https://www.123865.com/s/3UMBjv-XEYUh](https://www.123865.com/s/3UMBjv-XEYUh) 
  
  &emsp;&emsp;下载完成之后，到jenkins中安装插件。手动安装点击： 系统管理（Manage Jeknis）->插件管理（Manage Plugins）->高级->上传插件 ；选择刚刚下载好的插件文件，点击上传。
 
@@ -28,18 +29,18 @@
 
 ![](../images/jenkins4.jpg)
 
-#### 3. 配置jenkins
+### 4. 配置jenkins
  &emsp;&emsp;插件安装完成之后还需要配置一些参数，才能正常推送消息。
 
-&emsp;&emsp;到  系统管理（Manage Jeknis）-> 系统设置（Configure System）->Extended Push+ 账号信息  中设置您的Jenkins地址和您pushplus的用户token或消息token
+&emsp;&emsp;到  系统管理（Manage Jeknis）-> 系统设置（Configure System）-> 配置 pushplus 账号信息  中设置您的Jenkins地址和您pushplus的用户token或消息token
 
- - 您的Jenkins URL地址 用于推送消息点击后跳转的链接地址
+ - Jenkins URL地址 用于推送消息点击后跳转的链接地址
 
-- 您的Token 指的是pushplus分配给您的用户token或者消息token，请到pushplus网站上获取，请务必填写正确
+- 用户token或消息token 指的是pushplus分配给您的用户token或者消息token，请到pushplus网站上获取，请务必填写正确
 
-![](../images/jenkins5.jpg)
+![](../images/jenkins/jenkins1.jpg)
 
- &emsp;&emsp;然后就可以到您的具体构建任务中配置了。在构建后操作中把plusplus增加进来，然后填入您自己的群组编码，保存即可。
+ &emsp;&emsp;然后就可以到您的具体构建任务中配置了。在构建后操作中把plusplus增加进来，可以选择需要的发送渠道，如需发送一对多消息可填入第二步创建的群组编码，还支持好友消息。然后保存即可。
 
 &emsp;&emsp;如果您使用的是pipeline，插件也是支持的，语法如下：
 
@@ -47,12 +48,15 @@
 post {
        always {         
            pushplus (
-               "你的群组编码"
+               channel: 'wechat',       // 发送渠道：wechat/webhook/cp/mail/sms/extension
+               topic: 'build-alerts',      // 群组编码（可选）
+               to: '',      // 好友令牌（可选）
+               webhook: '',     // webhook编码（可选）
            )            
        }
    }
 ```
-![](../images/jenkins6.jpg)
+![](../images/jenkins/jenkins2.jpg)
 
 &emsp;&emsp;然后就可以正常使用了。jenkins构建以后，微信上就会收到构建结果的推送消息了。点击消息内容，直接打开您的jenkins构建日志，方便排查构建结果。
 
