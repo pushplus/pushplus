@@ -12,6 +12,7 @@ webhook | 免费 | 第三方webhook渠道；企业微信、钉钉、飞书、bar
 cp | 免费 | 企业微信应用渠道 | [企业微信应用配置](../extend/cp.md)
 mail | 免费 | 邮箱渠道 | [邮件渠道使用说明](../extend/mail.md)
 sms | 收费 | 短信渠道。成功发送1条短信需要10积分（0.1元） | [短信渠道配置](../extend/sms.md)
+extension | 免费 | 浏览器插件渠道 | [浏览器插件使用教程](../extend/extension.md)
 
 ## 请求示例
 
