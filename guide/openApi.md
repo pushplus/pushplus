@@ -1,5 +1,8 @@
-# pushplus 开放接口文档 V1.5
+# pushplus 开放接口文档 V1.6
 
+> 1.6 接口更新日期：2025-10-10\
+> 增加浏览器插件转发设置接口
+>
 > 1.5 接口更新日期：2025-05-09\
 > 增加消息token相关接口\
 > 增加预处理信息相关接口
@@ -1180,7 +1183,11 @@ createTime | 日期 | 创建日期
     "defaultChannelTxt": "微信公众号",
     "defaultWebhook": "",
     "sendLimit": 0,
-    "recevieLimit": 0
+    "recevieLimit": 0,
+    "sendType": 0,
+    "isSend": 1,
+    "showIp": 0
+    "extension": 0
   }
 }
 ```
@@ -1193,6 +1200,10 @@ defaultChannelTxt | 字符串 | 默认渠道名称
 defaultWebhook | 字符串 | 渠道参数
 sendLimit | 数字 |发送限制；0-无限制，1-禁止所有渠道发送，2-限制微信渠道，3-限制邮件渠道
 recevieLimit | 数字 |接收限制；0-接收全部，1-不接收消息
+sendType | 数字 | 打开消息方式；0-H5，1-小程序
+isSend | 数字 |是否启用发送消息功能；1-开启，0-关闭
+showIp | 数字 |消息详情底部是否展示推送方的IP地址；1-显示，0不显示
+extension | 数字 | 微信公众号渠道消息同步使用浏览器插件接收；1-开启，0-关闭
 
 ### 2. 修改默认发送渠道
 - 请求地址：https://www.pushplus.plus/api/open/setting/changeDefaultChannel
@@ -1272,6 +1283,26 @@ isSend | 是 | 无 | 发送消息功能；0-禁用，1-启用
 参数名称 | 是否必填 | 默认值 | 说明
 ---|--- |--- | ---
 openMessageType | 是 | 无 | 消息打开类型；0:H5，1:小程序
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功",
+  "data": null
+}
+```
+
+### 6. 修改浏览器插件转发
+- 请求地址：https://www.pushplus.plus/api/open/setting/extension?forward=0
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+forward | 是 | 无 | 微信渠道消息是否同步浏览器插件接收；0:否，1:是
 
 - 响应内容
 ```

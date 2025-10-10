@@ -13,6 +13,9 @@
 2. 打开浏览器的扩展程序管理页面。chrome浏览器地址：[chrome://extensions/](chrome://extensions/)，edge浏览器地址：[edge://extensions/](edge://extensions/)
 3. 将下载好的压缩包直接拖入到页面上即可完成安装。
 
+Firefox插件下载地址：[https://pcstx.lanzouq.com/iNtew37zzorc](https://pcstx.lanzouq.com/iNtew37zzorc)
+注意：Firefox不支持控制通知声音。
+
 ![](../images/extension.png)
 
 ### chrome应用商店
@@ -69,6 +72,10 @@
 ```
 - 说明：同样支持一对一、一对多和好友消息。支持一个用户登录多个浏览器设备，一次请求会在多个设备上同时接收到。
 
+## 同步接收微信渠道消息
+　&emsp;&emsp;在“个人中心” -> “功能设置” -> “浏览器插件转发” 中可以开启同步接收微信渠道的消息。也就是发送渠道为微信公众号(wechat)的消息也会在浏览器插件上接收到，无需再请求一次浏览器插件(extension)渠道的消息，并且是不计算浏览器插件(extension)渠道的请求次数的。
+ 
+![](../images/forwardextension.png)
 
 ## 相关问题
 
