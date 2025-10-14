@@ -1,7 +1,7 @@
 # 浏览器插件使用教程
 
 ## 引言
-　&emsp;&emsp;chrome内核的浏览器支持用户安装插件，使用pushplus浏览器插件后可以通过浏览器的通知功能来接收推送的消息。在电脑端无需安装其他软件即可方便地接收消息，更加轻量。
+　&emsp;&emsp;主流的浏览器支持用户安装插件，使用pushplus浏览器插件后可以通过浏览器的通知功能来接收推送的消息。在电脑端无需安装其他软件即可方便地接收消息，更加轻量。
 
 ![](../images/popup.png)
  
@@ -9,11 +9,16 @@
 　&emsp;&emsp;浏览器插件可以在chrome应用商店中搜索“pushplus”进行安装。或者直接下载手动安装。
 
 ### 手动安装
-1. 下载后将压缩包，下载地址：[https://pcstx.lanzouq.com/iCF9F37rl7ri](https://pcstx.lanzouq.com/iCF9F37rl7ri)
-2. 打开浏览器的扩展程序管理页面。chrome浏览器地址：[chrome://extensions/](chrome://extensions/)，edge浏览器地址：[edge://extensions/](edge://extensions/)
-3. 将下载好的压缩包直接拖入到页面上即可完成安装。
+1. 下载后将压缩包，下载地址：
+- Chrome或Edge浏览器：[https://pcstx.lanzouq.com/iMCc838db0ab](https://pcstx.lanzouq.com/iMCc838db0ab)
+- Firefox浏览器：[https://pcstx.lanzouq.com/iTQaI38dauhc](https://pcstx.lanzouq.com/iMCc838db0ab)
 
-Firefox插件下载地址：[https://pcstx.lanzouq.com/iNtew37zzorc](https://pcstx.lanzouq.com/iNtew37zzorc)
+2. 打开浏览器的扩展程序管理页面。
+- chrome浏览器地址：[chrome://extensions/](chrome://extensions/)
+- edge浏览器地址：[edge://extensions/](edge://extensions/)
+- FireFox浏览器地址：[about:addons](about:addons)
+
+3. 将下载好的压缩包直接拖入到页面上即可完成安装。
 注意：Firefox不支持控制通知声音。
 
 ![](../images/extension.png)
@@ -29,6 +34,11 @@ Firefox插件下载地址：[https://pcstx.lanzouq.com/iNtew37zzorc](https://pcs
 2. 点击“获取”
 
 ![](../images/edge.png)
+
+### Firefox浏览器附加组件市场
+1. 访问Firefox附加组件：[pushplus 推送加插件](https://addons.mozilla.org/zh-CN/firefox/addon/pushplus-%E6%8E%A8%E9%80%81%E5%8A%A0/)
+2. 点击“下载并安装扩展”
+3. 注意：Firefox不支持控制通知声音。
 
 ## 使用
 ### 首次使用
