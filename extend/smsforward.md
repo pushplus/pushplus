@@ -6,11 +6,11 @@
 ## 效果预览
 　&emsp;&emsp;最终的效果如下：
 
-![](../images/smsforward-7.png)
+![](../images/smsforward-1.png)
 
 **【pushplus公众号中接收到的消息列表】**
 
-![](../images/smsforward-1.png)
+![](../images/smsforward-2.png)
 
 **【pushplus消息详情】**
 
@@ -34,7 +34,7 @@ App网盘下载：[https://wws.lanzoui.com/b025yl86h](https://wws.lanzoui.com/b0
 #### 二、配置短信转发器设置
 　&emsp;&emsp;安装好app后，打开短信转发器。底部有四个标签页，选择“发送渠道”，新增pushplus发送通道。
 
-![](../images/smsforward-2.png)
+![](../images/smsforward-3.png)
 
 - 通道名称/状态字段：随便取个名字。
 - 官网地址：一定要选择第一个“www.pushplus.plus"。
@@ -45,7 +45,7 @@ App网盘下载：[https://wws.lanzoui.com/b025yl86h](https://wws.lanzoui.com/b0
 
 如测试按钮点击后无法收到，可以参考文章排查：[收不到消息如何排查？](https://www.pushplus.plus/doc/help/message.html)
 
-![](../images/smsforward-3.png)
+![](../images/smsforward-4.png)
 
 #### 三、pushplus的用户令牌获取方式如下：
 1. 登录pushplus官网：[https://www.pushplus.plus](https://www.pushplus.plus)
@@ -53,15 +53,15 @@ App网盘下载：[https://wws.lanzoui.com/b025yl86h](https://wws.lanzoui.com/b0
 3. 选择发送消息->一对一消息页面
 4. 一键复制“你的token”中的内容
 
-![](../images/smsforward-4.png)
+![](../images/smsforward-5.png)
 
 　&emsp;&emsp;如果需要多人同时接收短信内容，可以在pushplus中使用一对多消息，创建一个群组，在短信转发器pushplus渠道中的群组编码中填入新建的群组编码。
 
-![](../images/smsforward-5.png)
+![](../images/smsforward-6.png)
 
 　&emsp;&emsp;需要接收消息的用户需要扫描群组二维码加入到群组中。注意：创建群组的用户也需要扫码！
 
-![](../images/smsforward-6.png)
+![](../images/smsforward-7.png)
 
 #### 四、配置转发规则
 　&emsp;&emsp;新增好发送通道后，还需要增加转发规则。切换到转发规则标签中，新增一个短信转发规则。\
@@ -69,17 +69,17 @@ App网盘下载：[https://wws.lanzoui.com/b025yl86h](https://wws.lanzoui.com/b0
 　&emsp;&emsp;启用自定义模板中打勾选择，内容点击下面的“短信内容”即可。\
 　&emsp;&emsp;其他信息可以保持默认，或者根据自己情况修改。
 
-![](../images/smsforward-10.png)
+![](../images/smsforward-8.png)
 
 　&emsp;&emsp;保存转发规则之前，可以点击“测试”按钮来预览最终效果。
 
-![](../images/smsforward-8.png)
+![](../images/smsforward-9.png)
 
 #### 五、问题排查
 　&emsp;&emsp;好了，通过以上几步，就可以正常通过pushplus来接收手机上的短信内容了。如在使用中碰到没有转发的情况，可以根据以下思路来一步步排查。
 
 　&emsp;&emsp;如在“转发日志”中都没有短信内容的记录，那就是转发器的问题，可能手机权限没有开启等。可以根据短信转发器文档中排查：
 
-![](../images/smsforward-9.png)
+![](../images/smsforward-10.png)
 
 如点击测试按钮中都没有成功，可以排查pushplus渠道的问题。可以参考文章排查：[收不到消息如何排查？](https://www.pushplus.plus/doc/help/message.html)
