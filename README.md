@@ -103,6 +103,7 @@
 - [通过集简云发送企业微信消息](/extend/jijyun.md) - 集简云集成
 - [调用IFTTT的webhook](/extend/ifttt.md) - IFTTT集成
 - [自定义webhook配置](/extend/diy.md) - 自定义 webhook
+- [使用pushplus接收短信内容](/extend/smsforward.md) - 短信转发到微信
 
 ### 常见问题
 - [常见问题](/help/) - 使用帮助和常见问题
