@@ -4,8 +4,8 @@
 　&emsp;&emsp;pushplus已经实现通过企业微信应用给微信发送消息了。整体使用体验上会更加的贴近于微信公众号，灵活度玩法也会更多。
 
 ## 企业可信IP
-　&emsp;&emsp;2022年6月20日开始在企业微信中创建的第三方应用需要填写企业可信IP地址和信任域名。历史老应用不受影响无需配置，可以直接使用。
-针对新创建的应用，需要使用代理地址来让pushplus发送企业微信消息，需要您有一个公网ip地址，具体配置方式见第三步。
+　&emsp;&emsp;2022年6月20日开始在企业微信中创建的第三方应用需要填写企业可信IP地址和信任域名。历史老应用不受影响无需配置，可以直接使用。\
+　&emsp;&emsp;针对新创建的应用，需要使用代理地址来让pushplus发送企业微信消息，需要您有一个公网ip地址和企业微信账号主体一致的已备案域名，具体配置方式见第三步。
 
 ![](../images/cp0.png)
 
@@ -64,7 +64,9 @@
 考虑到国内dockerhub无法正常访问下载，提供了离线镜像文件，下载后解压缩.zip，然后使用`docker load -i cp-agent.tar`命令来导入镜像。\
 启动后：企业微信可信IP中填写自有服务器的ip地址；pushplus企业微信应用设置中代理地址填写 自有服务器ip:9000
 
-离线镜像文件下载地址：<a href="https://pan.baidu.com/s/1Z2pYgl7BZ9_l1nGtHrPqjA?pwd=byus" target="_blank">https://pan.baidu.com/s/1Z2pYgl7BZ9_l1nGtHrPqjA?pwd=byus</a>
+离线镜像文件
+- 123云盘：<a href="https://www.123865.com/s/3UMBjv-gBGUh" target="_blank">https://www.123865.com/s/3UMBjv-gBGUh</a>
+- 百度云：<a href="https://pan.baidu.com/s/1Z2pYgl7BZ9_l1nGtHrPqjA?pwd=byus" target="_blank">https://pan.baidu.com/s/1Z2pYgl7BZ9_l1nGtHrPqjA?pwd=byus</a>
 
 2. 使用腾讯云函数
 1) 访问<a href="https://console.cloud.tencent.com/scf/list" target="_blank">腾讯云函数</a>，开通并新建一个函数。
@@ -131,13 +133,19 @@ gateway({
 
 9) 等待一会就会生成出来固定公网IP了。复制这个IP，填入到企业微信的可信IP中。
 
+![](../images/cpagent-cpa1.png)
+ 
+10) 如提示先设置可信域名，就按照企业微信的引导去添加自己的域名。必须是和企业微信账号主体一致的已备案域名，具体哪个域名无所谓。
+
+![](../images/cpagent-cpa2.png)
+
+11) 点击“函数URL”，复制访问路径中的公网地址，填入到pushplus企业微信应用配置的代理地址中去。
+
 ![](../images/9.png)
  
-10) 点击“函数URL”，复制访问路径中的公网地址，填入到pushplus企业微信应用配置的代理地址中去。
+12) 保存后，即可正常使用企业微信渠道来发送消息了。
 
 ![](../images/11.png)
- 
-11) 保存后，即可正常使用企业微信渠道来发送消息了。
 
 #### 四、在我的企业->微信插件->微信扫码关注
 　&emsp;&emsp;成功关注后就可以在微信中收到企业微信的消息了。
@@ -145,7 +153,7 @@ gateway({
 ![](../images/cp8.webp)
  
 #### 五、发送企业微信应用消息
-　&emsp;&emsp;接口上需要额外使用到两个参数。channel参数，填写固定值cp；webhook参数，填写上一步配置中自己定义的应用编码。
+　&emsp;&emsp;接口上需要额外使用到两个参数。channel参数，填写固定值cp；webhook参数，填写上一步配置中自己定义的应用编码。\
 　&emsp;&emsp;具体示例如下：
 - 请求地址：http://www.pushplus.plus/send
 - 请求方式：POST
@@ -157,7 +165,7 @@ gateway({
     "title":"标题",
     "content":"消息内容",
     "channel":"cp",
-    "webhook":"自定义的应用编码"
+    "option":"自定义的应用编码"
 }
 ```
 

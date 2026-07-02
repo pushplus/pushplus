@@ -5,7 +5,7 @@
 
 ## 使用步骤
 ### 1. 获取token
-&emsp;&emsp;访问网址：[http://www.pushplus.plus/push2.html](http://www.pushplus.plus/push2.html)   使用微信扫码即可登陆。
+&emsp;&emsp;访问网址：[http://www.pushplus.plus/push2.html](http://www.pushplus.plus/push2.md)   使用微信扫码即可登陆。
 
 ### 2. 创建群组（可选配置）
 &emsp;&emsp;如果需要推送给多个人，可以使用pushplus的一对多消息来实现。新建一个群组。群组编码作为群组的唯一标示，后续需要使用。群组名称随意填写。
@@ -17,7 +17,8 @@
 
 ### 3. 安装jenkins插件
 &emsp;&emsp;目前插件并没有发布到jenkins的官方插件库中，所以需要手动下载安装。\
-&emsp;&emsp;jenkins插件v1.4下载地址：[https://www.123865.com/s/3UMBjv-XEYUh](https://www.123865.com/s/3UMBjv-XEYUh) 
+&emsp;&emsp;jenkins插件v1.5下载地址：[https://www.123865.com/s/3UMBjv-XEYUh](https://www.123865.com/s/3UMBjv-XEYUh) \
+（可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本）
  
  &emsp;&emsp;下载完成之后，到jenkins中安装插件。手动安装点击： 系统管理（Manage Jeknis）->插件管理（Manage Plugins）->高级->上传插件 ；选择刚刚下载好的插件文件，点击上传。
 
@@ -38,7 +39,7 @@
 
 - 用户token或消息token 指的是pushplus分配给您的用户token或者消息token，请到pushplus网站上获取，请务必填写正确
 
-![](../images/jenkins/jenkins1.jpg)
+![](../images/jenkins-jenkins1.png)
 
  &emsp;&emsp;然后就可以到您的具体构建任务中配置了。在构建后操作中把plusplus增加进来，可以选择需要的发送渠道，如需发送一对多消息可填入第二步创建的群组编码，还支持好友消息。然后保存即可。
 
@@ -56,7 +57,7 @@ post {
        }
    }
 ```
-![](../images/jenkins/jenkins2.jpg)
+![](../images/jenkins-jenkins2.png)
 
 &emsp;&emsp;然后就可以正常使用了。jenkins构建以后，微信上就会收到构建结果的推送消息了。点击消息内容，直接打开您的jenkins构建日志，方便排查构建结果。
 
@@ -66,6 +67,8 @@ post {
 ## 实现原理
 &emsp;&emsp;Jenkins是对于插件提供了丰富的接口参数。pushplus插件本身在jenkins构建的时候触发执行，可以读取到构建有关的信息，如构建的项目名称、构建编号、构建状态等。然后在构建完成的时候将这些信息拼装后通过pushplus发送到用户的微信上。\
 &emsp;&emsp;核心拼装执行了一个POST请求。pushplus接收到请求后针对性的调用了定制模板，通过微信模板消息接口发送到用户微信上。
+
+### 模板专用的请求示例
 - 请求地址：http://www.pushplus.plus/send/{token}?template=jenkins
 - 请求方式：POST
 - Content-Type: application/json
@@ -81,6 +84,28 @@ post {
     "buildLogUrl":"",
     "projectUrl":"",
     "costTime":"23"
+}
+```
+
+### 通用报文的请求示例
+- 请求地址：http://www.pushplus.plus/send/
+- 请求方式：POST
+- Content-Type: application/json
+- 请求报文：
+```
+{
+  "token": "{token}",
+  "title": "项目构建通知",
+  "template": "jenkins",
+  "content": {
+    "buildState": "构建成功",
+    "projectName": "测试项目",
+    "buildNumber": "#11",
+    "buildUser": "pushplus",
+    "buildLogUrl": "",
+    "projectUrl": "",
+    "costTime": "23"
+  }
 }
 ```
 

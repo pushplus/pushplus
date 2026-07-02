@@ -1,7 +1,9 @@
 # Demo代码
 
+&nbsp;&nbsp;&nbsp;&nbsp;推荐优先使用官方 [pushplus SDK](sdk.md)，而不是自行编写 HTTP 请求代码。SDK 已封装发送频率控制、开放接口令牌、回调等常见场景，可降低开发成本和出错概率。以下 Demo 代码仅供学习参考，帮助理解接口调用方式。
+
 ## 在线测试页面
-可以访问[https://pushplus.apifox.cn/](https://pushplus.apifox.cn/)，在线的测试接口。也可以直接使用页面上生成的代码示例，支持多种语言。
+可以访问[https://api.pushplus.plus/](https://api.pushplus.plus/)，在线的测试接口。也可以直接使用页面上生成的代码示例，支持多种语言。
 
 ## Shell代码示例
 > 使用Shell脚本演示具体如何发送消息
@@ -17,7 +19,7 @@
 #pushplus的相关参数
 TOKEN="你的token"
 TITLE="测试工单"
-CONTENT="消息的内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />"
+CONTENT="消息的内容<br/>![](../images/push.png)"
 URL="https://www.pushplus.plus/send/"
 
 # 定义文件用于记录是否已经发送过通知
@@ -126,7 +128,7 @@ public class PushControllerTest {
         if(limit!=1){
             String token= "您的token"; //您的token
             String title= "标题";  //消息的标题
-            String content= "内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />";  //消息的内容,包含文字、换行和图片
+            String content= "内容<br/>![](../images/push.png)";  //消息的内容,包含文字、换行和图片
             String url = "https://www.pushplus.plus/send?title="+ title +"&content="+ content +"&token=" + token;
 
             //服务器发送Get请求，接收响应内容
@@ -160,7 +162,7 @@ public class PushControllerTest {
         if(limit!=1){
             String token= "您的token"; //您的token
             String title= "标题";  //消息的标题
-            String content= "内容<br/><img src='http://www.pushplus.plus/doc/img/push.png' />";  //消息的内容
+            String content= "内容<br/>![](../images/push.png)";  //消息的内容
             String url = "https://www.pushplus.plus/send/";
 
             Map<String,Object> map = new HashMap<>();

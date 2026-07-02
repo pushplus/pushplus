@@ -29,6 +29,7 @@ template | 是 | 固定填写cloudMonitor
 #### 基本原理
 　&emsp;&emsp;阿里云监控会在发生报警的时候主动推送消息到回调地址，pushplus的回调地址在接收到请求报文后解析内容，使用专用的监控报警模板，调用微信模板消息接口推送到用户的微信上。\
 整个过程相当于执行了如下一个POST请求。
+
 - 请求地址：http://www.pushplus.plus/send/{token}?template=cloudMonitor
 - 请求方式：post
 - Content-Type: application/json
@@ -53,7 +54,40 @@ template | 是 | 固定填写cloudMonitor
    "userId": "12****"
 }
 ```
+
 具体报文含义参考阿里云文档：<a href="https://help.aliyun.com/document_detail/60714.html?spm=a2c4g.11186623.6.593.c7f571f4mrt11b" target="_blank">https://help.aliyun.com/document_detail/60714.html?spm=a2c4g.11186623.6.593.c7f571f4mrt11b</a>
+
+#### 通用报文的请求示例
+
+- 请求地址：http://www.pushplus.plus/send/
+- 请求方式：post
+- Content-Type: application/json
+- 请求报文：
+
+```
+{
+  "token": "{token}",
+  "title": "云监控",
+  "template": "cloudMonitor",
+  "content": {
+    "alertName": "基础监控-ECS-内存使用率",
+    "alertState": "ALERT",
+    "curValue": "97.39",
+    "dimensions": "{userId=12****, instanceId=i-12****}",
+    "expression": "$Average>=95",
+    "instanceName": "instance-name-****",
+    "metricName": "Host.mem.usedutilization",
+    "metricProject": "acs_ecs",
+    "namespace": "acs_ecs",
+    "preTriggerLevel": "WARN",
+    "ruleId": "applyTemplateee147e59-664f-4033-a1be-e9595746****",
+    "signature": "eEq1zHuCUp0XSmLD8p8VtTKF****",
+    "timestamp": "1508136760",
+    "triggerLevel": "WARN",
+    "userId": "12****"
+  }
+}
+```
 
 #### 主机监控和事件监控
 　&emsp;&emsp;阿里云的监控有主机监控和事件监控。它们回调的报文内容格式是两种完全不同的内容。

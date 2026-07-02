@@ -10,10 +10,12 @@
 　&emsp;&emsp;本插件由koolshare论坛的 **[囍冯总囍]** 开发，在此特别感谢！
 
 ## 离线安装包下载
+可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本
+
 - 0.5版本离线安装包
 
-hnd平台：[https://image.pushplus.plus/route/hnd/pushplus.tar.gz](https://image.pushplus.plus/route/hnd/pushplus.tar.gz) \
-arm384平台：[https://image.pushplus.plus/route/arm384/pushplus.tar.gz](https://image.pushplus.plus/route/arm384/pushplus.tar.gz)
+hnd平台：[https://pcstx.lanzouq.com/iQV3b380rmwd](https://pcstx.lanzouq.com/iQV3b380rmwd) \
+arm384平台：[https://pcstx.lanzouq.com/idkuK380rued](https://pcstx.lanzouq.com/idkuK380rued)
 
 官方商城上架视审批情况而定（比较慢），可以提前离线下载自行安装。
 
@@ -29,17 +31,17 @@ armsoft开源项目地址：[https://github.com/koolshare/armsoft](https://githu
 1. 在软件中心里面找到并安装“pushplus全能推送”。
 
 
-![](../images/r1.jpg)
+![](../images/img-r1.jpg)
 
 2. 在软件的基础设置中开启pushplus，然后填入自己的用户token或消息token，点击“提交”保存配置。
 
 
-![](../images/r2.jpg)
+![](../images/img-r2.jpg)
 
 3. 配置完成，可以点击“手动推送”进行测试是否可以正常收到路由器的推送消息。
 
 
-![](../images/r3.jpg)
+![](../images/img-r3.jpg)
 
 
 ## 实现原理

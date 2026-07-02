@@ -1,7 +1,32 @@
-# pushplus 开放接口文档 V1.6
+# pushplus 开放接口文档 V1.14
 
+> 1.14 接口更新日期：2026-05-09\
+> 增加图片服务相关接口
+>
+> 1.13 接口更新日期：2026-04-14\
+> 完善群组接口字段，增加群组修改相关接口
+>
+> 1.12 接口更新日期：2026-03-27\
+> 增加微信ClawBot渠道相关接口
+>
+> 1.11 接口更新日期：2026-01-27\
+> 群组二维码和个人二维码增加可扫码次数参数
+>
+> 1.10 接口更新日期：2025-12-08\
+> 默认渠道接口修改，根据消息token来配置不同的默认渠道
+>
+> 1.9 接口更新日期：2025-12-01\
+> 增加删除消息接口
+>
+> 1.8 接口更新日期：2025-11-23\
+> 增加删除群组接口
+>
+> 1.7 接口更新日期：2025-11-18\
+> webhook类型支持自定义\
+> 默认渠道枚举完善
+>
 > 1.6 接口更新日期：2025-10-10\
-> 增加浏览器插件转发设置接口
+> 增加插件转发设置接口
 >
 > 1.5 接口更新日期：2025-05-09\
 > 增加消息token相关接口\
@@ -34,6 +59,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;为了更方便的让用户使用pushplus功能，现将原本需要在界面上操作的功能开放出来，包括消息、用户、群组、设置等能力。原本发送消息的接口是通过用户token来调用的，考虑到这种方式安全性较低，容易泄露，所以本次开放的接口采用AccessKey的校验方式。在请求接口的时候，需要在header中带上key名为“access-key”的内容，否则会请求失败。
 
 &nbsp;&nbsp;&nbsp;&nbsp;由于开放接口权限较高，泄露后会给用户造成严重后果，所以默认是禁用状态，需要用户手动的在开发设置中开启，并在调用AccessKey接口之前配置好secretKey和安全IP地址。
+
+&nbsp;&nbsp;&nbsp;&nbsp;推荐优先使用官方 [pushplus SDK](sdk.md)，而不是自行编写 HTTP 请求代码。SDK 已封装 AccessKey 刷新、发送频率控制、回调等常见场景，可降低开发成本和出错概率。如需了解接口参数，可参考下文接口说明。
+
+## 接口在线测试页面
+可以访问[https://api.pushplus.plus/doc-6905395](https://api.pushplus.plus/doc-6905395)，在线的测试接口。可以直接使用页面上生成的代码示例，支持多种语言。
 
 ## 一. 获取AccessKey
 ### 1. 使用说明
@@ -181,6 +211,41 @@ status | 数字 | 消息投递状态；0-未投递，1-发送中，2-已发送�
 errorMessage | 字符串 | 发送失败原因
 updateTime | 日期 | 更新时间
 
+### 3. 删除消息
+注：删除后所有接收人均无法查看，且无法撤销。
+
+- 请求地址：https://www.pushplus.plus/api/open/message/deleteMessage?shortCode=a018***648
+- 请求方式：DELETE
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数，url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+shortCode | 是 | 无 | 消息短链码
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功"
+}
+```
+
+### 4. 消息详情
+- 请求地址：https://www.pushplus.plus/shortMessage/a018***648
+- 请求方式：GET
+- content-type: text/html;charset=UTF-8
+- 请求参数，url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+a018***648 | 是 | 无 | 消息短链码,替换成发送消息同步返回的短链码
+
+- 响应内容
+
+消息内容html。不直接提供消息内容、标题、发送人等json格式的接口。
 
 ## 三. 用户接口
 ### 1. 获取用户token
@@ -434,6 +499,42 @@ id | 是 | 无 | 消息token编号
 }
 ```
 
+### 5. 消息token下拉选择列表
+- 请求地址：https://www.pushplus.plus/api/open/token/selectTokenList?type=0
+- 请求方式：GET
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+type | 否 | 0 | 0-返回所有消息token；1-返回未配置默认推送渠道的消息token；
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": [
+        {
+            "id": 1,
+            "name": "token1"
+        },
+        {
+            "id": 2,
+            "name": "token2"
+        }
+    ]
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 消息令牌编号
+name | 字符串 | 消息令牌名称
+
 ## 五. 群组接口
 ### 1. 群组列表
 - 请求地址：https://www.pushplus.plus/api/open/topic/list
@@ -470,11 +571,18 @@ topicType | 是 | 0 | 群组类型;0-我创建的，1-我加入的
     "pages": 1,
     "list": [
       {
+        "icon": "群组图标地址",
         "topicId": 4,
         "topicCode": "群组编码",
         "topicName": "群组名称",
         "nickName": "所属微信公众号名称",
-        "createTime": "2021-12-24 01:19:15"
+        "createTime": "2021-12-24 01:19:15",
+        "topicUserCount": 1,
+        "topicType": 2,
+        "isApproved": 2,
+        "firstIsApproved": 2,
+        "approveReason": "审批拒绝理由",
+        "isOpen": 1
       }
     ]
   }
@@ -494,11 +602,18 @@ list | 数组 | 群组列表
 
 参数名称 | 类型 | 说明
 ---|--- | ---
+icon | 字符串 | 群组图标
 topicId | 数字 | 群组编号
 topicCode | 字符串 | 群组编码
 topicName | 字符串 | 群组名称
 nickName | 字符串 | 所属微信公众号名称
 createTime | 日期 | 创建时间
+topicUserCount | 数字 | 群组订阅人总数
+topicType |数字 | 群组类型；0普通群组；1积分群组；2公开群组
+isApproved | 数字 | 是否审核通过；0未审核，1审核不通过，2审核通过
+firstIsApproved |数字 | 创建时是否审核通过；0未审核，1审核不通过，2审核通过
+approveReason | 字符串 | 审批拒绝理由
+isOpen | 数字 | 是否上架(仅积分群组)；0否，1是
 
 ### 2. 获取我创建的群组详情
 - 请求地址：https://www.pushplus.plus/api/open/topic/detail?topicId=1
@@ -526,7 +641,17 @@ topicId | 是 | 无 | 群组编号
     "receiptMessage": "关注后回复",
     "nickName": "所属微信公众号名称",
     "createTime": "2021-02-10 16:58:01",
-    "topicUserCount": 1
+    "topicUserCount": 1,
+    "icon": "群组图标地址",
+    "appId": "服务号appId",
+    "topicType": 2,
+    "price": 0.00,
+    "topicDescribe": "一句话介绍",
+    "userNickName": "创建人昵称",
+    "isApproved": 2,
+    "firstIsApproved": 2,
+    "approveReason": "审批拒绝理由",
+    "isOpen": 1
   }
 }
 ```
@@ -544,8 +669,18 @@ receiptMessage | 字符串 | 加入后回复内容
 nickName | 字符串 | 所属微信公众号名称
 createTime | 日期 | 创建时间
 topicUserCount | 字符串 | 群组订阅人总数
+icon | 字符串 | 群组图标
+appId | 字符串 | 服务号appId
+topicType |数字 | 群组类型；0普通群组；1积分群组；2公开群组
+price | 数字 | 积分群组订阅积分；按月
+topicDescribe | 字符串 | 一句话介绍
+userNickName | 字符串 | 创建人昵称
+isApproved | 数字 | 是否审核通过；0未审核，1审核不通过，2审核通过
+firstIsApproved |数字 | 创建时是否审核通过；0未审核，1审核不通过，2审核通过
+approveReason | 字符串 | 审批拒绝理由
+isOpen | 数字 | 是否上架(仅积分群组)；0否，1是
 
-### 4. 获取我加入的群详情
+### 3. 获取我加入的群详情
 - 请求地址：https://www.pushplus.plus/api/open/topic/joinTopicDetail?topicId=1
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
@@ -568,7 +703,13 @@ topicId | 是 | 无 | 群组编号
     "contact": "联系方式",
     "introduction": "群组简介", 
     "nickName": "所属微信公众号名称",
-    "createTime": "2021-03-29 20:11:50"
+    "createTime": "2021-03-29 20:11:50",
+    "icon": "群组图标",
+    "topicUserCount": 1,
+    "topicType": 1,
+    "price": 100.00,
+    "topicDescribe": "一句话介绍",
+    "userNickName": "创建者昵称"
   }
 }
 ```
@@ -583,8 +724,14 @@ contact | 字符串 | 联系方式
 introduction | 字符串 | 群组简介  
 nickName | 字符串 | 所属微信公众号名称
 createTime | 日期 | 加入时间
+icon | 字符串 | 群组图标
+topicUserCount| 数字 | 已订阅人数
+topicType |数字 | 群组类型；0普通群组；1积分群组；2公开群组
+price | 数字 | 积分群组订阅积分；按月
+topicDescribe | 字符串 | 一句话介绍
+userNickName | 字符串 | 创建人昵称
 
-### 5. 新增群组
+### 4. 新增群组
 - 请求地址：https://www.pushplus.plus/api/open/topic/add
 - 请求方式：POST
 - Content-Type: application/json
@@ -597,7 +744,11 @@ createTime | 日期 | 加入时间
   "contact": "联系方式",
   "introduction": "群组简介",
   "receiptMessage": "关注后回复",
-  "appId": "微信公众号Id"
+  "appId": "微信公众号Id",
+  "icon": "群组图标",
+  "topicType": 0,
+  "price": 0,
+  "topicDescribe": "一句话简介"
 }
 ```
 - 请求参数说明
@@ -610,6 +761,10 @@ contact | 是 | 无| 联系方式
 introduction | 是 | 无| 群组简介
 receiptMessage | 否 | 无| 加入后回复内容
 appId | 否 | 无| 微信公众号Id；填写绑定后的公众号Id，默认使用pushplus公众号
+icon | 否  | 无 | 群组图标
+topicType | 否 | 0 | 群组类型；0普通群组；1积分群组；2公开群组
+price | 否 | 0.00 | 积分群组订阅积分；按月
+topicDescribe | 否 | 无 | 一句话介绍
 
 - 响应内容
 ```
@@ -623,8 +778,50 @@ appId | 否 | 无| 微信公众号Id；填写绑定后的公众号Id，默认使
 
 data中返回新建群组的群组编号。
 
+### 5. 修改群组
+- 请求地址：https://www.pushplus.plus/api/open/topic/editTopic
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "topic": 1,
+  "topicCode": "pushplus",
+  "topicName": "推送加",
+  "contact": "联系方式",
+  "introduction": "群组简介",
+  "receiptMessage": "关注后回复",
+  "icon": "群组图标",
+  "price": 0,
+  "topicDescribe": "一句话简介"
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+topic | 是 | 无 | 群组编号
+topicCode | 是 | 无 | 群组编码
+topicName | 是 | 无 | 群组名称
+contact | 否 | 无| 联系方式
+introduction | 否 | 无| 群组简介
+receiptMessage | 否 | 无| 加入后回复内容
+icon | 否 | 无 | 群组图标
+price | 否 | 0.00 | 积分群组订阅积分；按月
+topicDescribe | 否 | 无 | 一句话介绍
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功",
+  "data": "修改成功"
+}
+```
+
 ### 6. 获取群组二维码
-- 请求地址：https://www.pushplus.plus/api/open/topic/qrCode?topicId=1&second=2592000
+- 请求地址：https://www.pushplus.plus/api/open/topic/qrCode?topicId=1&second=604800&scanCount=-1
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
 - 请求参数: url传参
@@ -633,7 +830,8 @@ data中返回新建群组的群组编号。
 参数名称 | 是否必填 | 默认值 | 说明
 ---|--- |--- | ---
 topicId | 是 | 无 | 群组编号
-second | 否 | 无 | 二维码有效期（单位秒）；不传默认30天，最长30天。
+second | 否 | 604800 | 二维码有效期（单位秒）；不传默认7天，最长30天。
+scanCount | 否 | -1 | 可扫码次数；范围1-999次，-1代表无限次
 
 - 响应内容
 ```
@@ -670,6 +868,53 @@ topicId | 是 | 无 | 群组编号
   "code": 200,
   "msg": "请求成功",
   "data": "退订成功"
+}
+```
+
+### 8. 删除群组
+- 请求地址：https://www.pushplus.plus/api/open/topic/delete?topicId=1
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+topicId | 是 | 无 | 群组编号
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功",
+  "data": "群组删除成功"
+}
+```
+
+### 9. 上下架积分群组
+- 请求地址：https://www.pushplus.plus/api/open/topic/isOpen
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "topic": 1,
+  "isOpen": 1
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+topic | 是 | 无 | 群组编号
+isOpen | 是 | 无 | 是否上架；1是，0否
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功",
+  "data": "操作成功"
 }
 ```
  
@@ -769,6 +1014,32 @@ topicRelationId | 是 | 无 | 用户编号
 }
 ```
 
+### 3. 修改订阅人备注
+- 请求地址：https://www.pushplus.plus/api/open/topicUser/editRemark
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "id": 1,
+  "remark": "订阅人备注"
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 用户编号
+remark |  是 | 无 | 订阅人备注信息；20个字以内
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功"
+}
+```
+
 ## 七. 渠道配置接口
 ### 1. 获取webhook列表
 - 请求地址：https://www.pushplus.plus/api/open/webhook/list
@@ -805,6 +1076,7 @@ pageSize |  否 | 20 | 每页大小，最大值为50
         "webhookCode": "pushplus",
         "webhookName": "webhook推送",
         "webhookType": 1,
+        "webhookTypeName": "企业微信机器人",
         "webhookUrl": "url",
         "createTime": "2021-12-23 09:00:56",
       }
@@ -829,7 +1101,8 @@ list | 数组 | webhook列表
 id | 数字 | webhook编号
 webhookCode | 字符串 | webhook编码
 webhookName | 字符串 | webhook名称
-webhookType | 数字 | webhook类型；1-企业微信，2-钉钉，3-飞书，4-server酱
+webhookType | 数字 | webhook类型；1-企业微信机器人，2-钉钉机器人，3-飞书机器人，4-Server酱，50-bark，6-企业微信应用，7-腾讯轻联，8-IFTTT，9-集简云，10-Gotify，11-WxPusher，12-自定义
+webhookTypeName | 字符串 | webhook类型名称
 webhookUrl | 字符串 | 调用的url地址
 createTime | 日期 | 创建日期
 
@@ -855,6 +1128,7 @@ webhookId | 是 | 无 | webhook编号
     "webhookCode": "pushplus",
     "webhookUrl": "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=63******8f",
     "webhookType": 1,
+    "webhookTypeName": "企业微信机器人",
     "createTime": "2021-12-23 09:00:56"
   }
 }
@@ -866,9 +1140,13 @@ webhookId | 是 | 无 | webhook编号
 id | 数字 | webhook编号
 webhookCode | 字符串 | webhook编码
 webhookName | 字符串 | webhook名称
-webhookType | 数字 | webhook类型；1-企业微信，2-钉钉，3-飞书，4-server酱
+webhookType | 数字 | webhook类型；1-企业微信机器人，2-钉钉机器人，3-飞书机器人，4-Server酱，50-bark，6-企业微信应用，7-腾讯轻联，8-IFTTT，9-集简云，10-Gotify，11-WxPusher，12-自定义
+webhookTypeName | 字符串 | webhook类型名称
 webhookUrl | 字符串 | 调用的url地址
 createTime | 日期 | 创建日期
+httpMethod | 字符串 | 请求方法（仅自定义类型中返回）
+headers | 字符串 | 请求头（仅自定义类型中返回）
+body | 字符串 | body内容（仅自定义类型中返回）
 
 ### 3. 新增webhook
 - 请求地址：https://www.pushplus.plus/api/open/webhook/add
@@ -890,8 +1168,11 @@ createTime | 日期 | 创建日期
 ---|--- |--- | ---
 webhookCode | 是 | 无 | webhook编码
 webhookName | 是 | 无 | webhook名称
-webhookType | 是 | 无| webhook类型；1-企业微信，2-钉钉，3-飞书，4-server酱
+webhookType | 是 | 无| webhook类型；1-企业微信机器人，2-钉钉机器人，3-飞书机器人，4-Server酱，50-bark，6-企业微信应用，7-腾讯轻联，8-IFTTT，9-集简云，10-Gotify，11-WxPusher，12-自定义
 webhookUrl | 是 | 无| 调用的url地址
+httpMethod | 否 | 无 | 请求方法（仅自定义类型中需要）
+headers | 否 | 无 | 请求头（仅自定义类型中需要）
+body | 否 | 无 | body内容（仅自定义类型中需要）
 
 - 响应内容
 ```
@@ -927,8 +1208,11 @@ data中返回新建webhook编号。
 id | 是 | 无 | webhook编号
 webhookCode | 是 | 无 | webhook编码
 webhookName | 是 | 无 | webhook名称
-webhookType | 是 | 无| webhook类型；1-企业微信，2-钉钉，3-飞书，4-server酱
+webhookType | 是 | 无| webhook类型；1-企业微信机器人，2-钉钉机器人，3-飞书机器人，4-Server酱，50-bark，6-企业微信应用，7-腾讯轻联，8-IFTTT，9-集简云，10-Gotify，11-WxPusher，12-自定义
 webhookUrl | 是 | 无| 调用的url地址
+httpMethod | 否 | 无 | 请求方法（仅自定义类型中需要）
+headers | 否 | 无 | 请求头（仅自定义类型中需要）
+body | 否 | 无 | body内容（仅自定义类型中需要）
 
 - 响应内容
 ```
@@ -1167,27 +1451,156 @@ smtpSsl | 数字 | 是否启用SSL；1-启用，0-不启用
 smtpPort | 字符串 | smtp端口
 createTime | 日期 | 创建日期
 
-## 八. 功能设置接口
-### 1. 获取默认发送渠道
-- 请求地址：https://www.pushplus.plus/api/open/setting/getUserSettings
+## 八. 微信ClawBot接口
+### 1. 获取二维码
+- 请求地址：https://www.pushplus.plus/api/open/clawBot/getBotQrcode
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
 - 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": {
+        "url": "https://liteapp.weixin.qq.com/q/7GiQu1?qrcode=904f3f50d55baaa2738a004588babdea&bot_type=3",
+        "qrcode": "904f3f50d55baaa2738a004588babdea"
+    }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+url | 字符串 | 二维码地址
+qrcode | 字符串 | 二维码编号
+
+### 2. 扫码结果查询
+- 请求地址：https://www.pushplus.plus/api/open/clawBot/getQrcodeStatus
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+getQrcodeStatus | 是 | 无 | 二维码编号
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功"
+}
+```
+
+### 3. 绑定详情
+- 请求地址：https://www.pushplus.plus/api/open/clawBot/botInfo
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": {
+        "createTime": "2026-03-26 23:14:23",
+        "haveContextToken": 1
+    }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+createTime | 字符串 | 绑定时间
+haveContextToken | 字符串 | 是否有对话令牌
+
+### 4. 解绑
+- 请求地址：https://www.pushplus.plus/api/open/clawBot/unbind
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功"
+}
+```
+
+### 5. 获取发送消息
+- 请求地址：https://www.pushplus.plus/api/open/clawBot/getMsg
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": [
+        {
+            "type": 1,
+            "text": "文字消息"
+        },
+        {
+            "type": 3,
+            "text": "语音消息"
+        }
+    ]
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+type | 字符串 | 消息类型；1-文字，3-语音
+text | 字符串 | 消息内容
+
+## 九. 功能设置接口
+### 1. 获取默认配置列表
+- 请求地址：https://www.pushplus.plus/api/open/setting/listUserDefault
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "current": 1,
+  "pageSize": 20
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+current | 否 | 1 | 当前所在分页数
+pageSize |  否 | 20 | 每页大小，最大值为50
+
 - 响应内容
 ```
 {
   "code": 200,
   "msg": "请求成功",
   "data": {
-    "defaultChannel": "wechat",
-    "defaultChannelTxt": "微信公众号",
-    "defaultWebhook": "",
-    "sendLimit": 0,
-    "recevieLimit": 0,
-    "sendType": 0,
-    "isSend": 1,
-    "showIp": 0
-    "extension": 0
+    "pageNum": 1,
+    "pageSize": 20,
+    "total": 5,
+    "pages": 1,
+    "list": [
+      {
+        "id": 1,
+        "channel": "wechat",
+        "channelTxt": "微信公众号",
+        "updateTime": "2025-12-08 09:32:06",
+        "name": "用户token"
+      }
+    ]
   }
 }
 ```
@@ -1195,45 +1608,149 @@ createTime | 日期 | 创建日期
 
 参数名称 | 类型 | 说明
 ---|--- | ---
-defaultChannel | 字符串 | 默认渠道编码
-defaultChannelTxt | 字符串 | 默认渠道名称
-defaultWebhook | 字符串 | 渠道参数
-sendLimit | 数字 |发送限制；0-无限制，1-禁止所有渠道发送，2-限制微信渠道，3-限制邮件渠道
-recevieLimit | 数字 |接收限制；0-接收全部，1-不接收消息
-sendType | 数字 | 打开消息方式；0-H5，1-小程序
-isSend | 数字 |是否启用发送消息功能；1-开启，0-关闭
-showIp | 数字 |消息详情底部是否展示推送方的IP地址；1-显示，0不显示
-extension | 数字 | 微信公众号渠道消息同步使用浏览器插件接收；1-开启，0-关闭
+pageNum | 数字 | 当前页码
+pageSize | 数字 | 分页大小
+total | 数字 | 总行数
+pages | 数字 | 总页数
+list | 数组 | 邮箱列表
 
-### 2. 修改默认发送渠道
-- 请求地址：https://www.pushplus.plus/api/open/setting/changeDefaultChannel
+- 邮箱列表字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 默认配置编号
+channel | 字符串 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+channelTxt | 字符串 | 渠道名称
+updateTime | 字符串 | 更新时间
+name | 字符串 | 令牌名称
+
+### 2. 默认配置详情
+- 请求地址：https://www.pushplus.plus/api/open/setting/detailUserDefault?id=1
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 默认配置编号
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": {
+        "id": 1,
+        "channel": "wechat",
+        "option": "wx3b5738b0e92dc180",
+        "pre": "",
+        "updateTime": "2025-12-08 09:32:06",
+        "name": "用户token",
+        "tokenId": 0
+    }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 默认配置编号
+channel | 字符串 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+option | 字符串 | 渠道参数
+pre | 字符串 | 预处理编码
+updateTime | 字符串 | 更新时间
+name | 字符串 | 令牌名称
+tokenId | 数字 | 消息令牌id；用户令牌为0
+
+### 3. 新增默认配置
+- 请求地址：https://www.pushplus.plus/api/open/setting/addUserDefault
 - 请求方式：POST
 - Content-Type: application/json
 - (header) access-key: d7b******62f(获取到的AccessKey)
 - 请求参数:
 ```
 {
-  "defaultChannel": "wechat",
-  "defaultWebhook": ""
+  "channel": "wechat",
+  "option": "wxa551176bf758ffc7",
+  "pre": "test",
+  "tokenId": "1"
 }
 ```
 - 请求参数说明
 
 参数名称 | 是否必填 | 默认值 | 说明
 ---|--- |--- | ---
-defaultChannel | 是 | 无 | 默认渠道；wechat-微信公众号,mail-邮件,cp-企业微信应用,webhook-第三方webhook
-defaultWebhook | 否 | 无 | 渠道参数；webhook和cp渠道需要填写具体的webhook编号或自定义编码
+channel | 是 | 无 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+option | 是 | 无 | 渠道参数
+pre | 是 | 无| 预处理编码
+tokenId | 是 | 无| 消息令牌id；用户令牌为0
+
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功"
+}
+```
+
+### 4. 修改默认配置
+- 请求地址：https://www.pushplus.plus/api/open/setting/editUserDefault
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "channel": "wechat",
+  "option": "wxa551176bf758ffc7",
+  "pre": "",
+  "tokenId": "15",
+  "id": "2114"
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 默认配置编号
+channel | 是 | 无 | 默认渠道；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+option | 否 | 无 | 渠道参数；webhook和cp渠道需要填写具体的webhook编号或自定义编码
+pre | 否 | 无 | 预处理编码
+tokenId | 是 | 无 | 消息令牌id；用户令牌为0
+
 
 - 响应内容
 ```
 {
   "code": 200,
   "msg": "执行成功",
-  "data": null
+  "data": "修改成功"
 }
 ```
 
-### 3. 修改接收消息限制
+### 5. 删除默认配置
+- 请求地址：https://www.pushplus.plus/api/open/setting/deleteUserDefault?id=1
+- 请求方式：DELETE
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 默认配置编号
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功",
+  "data": "默认配置删除成功"
+}
+```
+
+### 6. 修改接收消息限制
 - 请求地址：https://www.pushplus.plus/api/open/setting/changeRecevieLimit?recevieLimit=0
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
@@ -1253,7 +1770,7 @@ recevieLimit | 是 | 无 | 接收消息限制；0-接收全部，1-不接收消�
 }
 ```
 
-### 4. 开启/关闭发送消息功能
+### 7. 开启/关闭发送消息功能
 - 请求地址：https://www.pushplus.plus/api/open/setting/changeIsSend?isSend=0
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
@@ -1273,7 +1790,7 @@ isSend | 是 | 无 | 发送消息功能；0-禁用，1-启用
 }
 ```
 
-### 5. 修改打开消息方式
+### 8. 修改打开消息方式
 - 请求地址：https://www.pushplus.plus/api/open/setting/changeOpenMessageType?openMessageType=0
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
@@ -1293,7 +1810,7 @@ openMessageType | 是 | 无 | 消息打开类型；0:H5，1:小程序
 }
 ```
 
-### 6. 修改浏览器插件转发
+### 9. 修改插件渠道转发
 - 请求地址：https://www.pushplus.plus/api/open/setting/extension?forward=0
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
@@ -1302,7 +1819,7 @@ openMessageType | 是 | 无 | 消息打开类型；0:H5，1:小程序
 
 参数名称 | 是否必填 | 默认值 | 说明
 ---|--- |--- | ---
-forward | 是 | 无 | 微信渠道消息是否同步浏览器插件接收；0:否，1:是
+forward | 是 | 无 | 微信渠道消息是否同步浏览器扩展插件接收和桌面应用程序；0:否，1:是
 
 - 响应内容
 ```
@@ -1313,9 +1830,9 @@ forward | 是 | 无 | 微信渠道消息是否同步浏览器插件接收；0:�
 }
 ```
 
-## 九. 好友功能接口
+## 十. 好友功能接口
 ### 1. 获取个人二维码
-- 请求地址：https://www.pushplus.plus/api/open/friend/getQrCode?appId=wx3b5738bdds3c180&content=123
+- 请求地址：https://www.pushplus.plus/api/open/friend/getQrCode?appId=wx3b5738bdds3c180&content=123&second=604800&scanCount=-1
 - 请求方式：GET
 - (header) access-key: d7b******62f(获取到的AccessKey)
 - 请求参数: 
@@ -1324,6 +1841,8 @@ forward | 是 | 无 | 微信渠道消息是否同步浏览器插件接收；0:�
 ---|--- |--- | ---
 appId | 否 | 无 | 微信公众号Id
 content | 否 | 无 | 自定义参数，扫描后回调（可用于区分扫描渠道）
+second | 否 | 604800 | 二维码有效期（单位秒）；不传默认7天，最长30天
+scanCount | 否 | -1 | 可扫码次数；范围1-999次，-1代表无限次
 
 - 响应内容
 ```
@@ -1454,7 +1973,7 @@ remark |  是 | 无 | 好友备注
 }
 ```
 
-## 十. 预处理信息接口
+## 十一. 预处理信息接口
 注：预处理信息需开通会员才能使用
 
 ### 1. 获取预处理信息列表
@@ -1671,3 +2190,162 @@ message | 是 | 无 | 测试消息内容
 - 响应内容说明
 
 data中返回预处理后的消息内容。
+
+## 十二. 图片服务接口
+
+&nbsp;&nbsp;&nbsp;&nbsp;用于获取七牛云上传凭证、上传图片、查询已上传列表及主动删除。上传时使用「获取上传凭证」返回的 `uploadUrl` 与 `uploadToken`，按七牛云表单上传规范提交文件。仅支持图片类型，30 天有效期。
+
+### 1. 获取上传凭证
+- 请求地址：https://www.pushplus.plus/api/open/userImage/uploadToken
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 说明：返回七牛云表单上传所需的 token 及上传域名、存储桶等信息，用于调用七牛上传接口完成图片上传。
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功",
+  "data": {
+    "uploadToken": "dk2Xhd322ds-ODYNXBq15gHdUAT4N3MKVmEIp2:...",
+    "uploadHost": "https://upload.qiniup.com",
+    "uploadUrl": "https://upload.qiniup.com/",
+    "bucket": "pushplus-img",
+    "expiresIn": 600
+  }
+}
+```
+- 响应字段说明（data）
+
+参数名称 | 类型 | 说明
+---|--- | ---
+uploadToken | 字符串 | 七牛云上传凭证
+uploadHost | 字符串 | 七牛云上传域名
+uploadUrl | 字符串 | 七牛云上传地址
+bucket | 字符串 | 七牛云存储桶名称
+expiresIn | 数字 | 凭证有效时间（秒）
+
+### 2. 上传图片
+- 请求地址：取「获取上传凭证」响应中的 **uploadUrl**（一般为 `https://upload.qiniup.com/`）
+- 请求方式：POST
+- Content-Type：multipart/form-data
+- 说明：七牛云表单上传，无需携带 `access-key`
+
+- 请求参数（form-data）
+
+参数名称 | 是否必填 | 说明
+---|--- | ---
+token | 是 | 上传凭证，即「获取上传凭证」返回的 `uploadToken`
+file | 是 | 待上传的图片文件（二进制）
+
+- 响应内容
+```
+{
+  "errno": 0,
+  "ext": ".png",
+  "fname": "a142bd212e4f2199e0cdc2ba62b9a441.png",
+  "fsize": 112459,
+  "hash": "Fh6DhVFkTz-DHzgAhcO7nd9KQKbx",
+  "key": "1/Fh6DhVFkTz-DHzgAhcO7nd9KQKbx.png",
+  "mimeType": "image/png",
+  "msg": "ok",
+  "thumbnail": "https://pic.pushplus.plus/1/Fh6DhVFkTz-DHzgAhcO7nd9KQKbx.png@s",
+  "url": "https://pic.pushplus.plus/1/Fh6DhVFkTz-DHzgAhcO7nd9KQKbx.png@p"
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+errno | 数字 | 错误码；0 表示成功
+ext | 字符串 | 文件扩展名
+fname | 字符串 | 文件名
+fsize | 数字 | 文件大小（字节）
+hash | 字符串 | 文件 hash
+key | 字符串 | 对象存储中的路径 key
+mimeType | 字符串 | MIME 类型
+msg | 字符串 | 响应说明
+thumbnail | 字符串 | 缩略图地址
+url | 字符串 | 图片访问地址
+
+### 3. 图片列表
+- 请求地址：https://www.pushplus.plus/api/open/userImage/list
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "current": 1,
+  "pageSize": 10,
+  "params": {}
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+current | 否 | 1 | 当前所在分页数
+pageSize | 否 | 10 | 每页大小，最大值为50
+params | 否 | {} | 扩展查询参数
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功",
+  "data": {
+    "pageNum": 1,
+    "pageSize": 3,
+    "total": 3,
+    "pages": 1,
+    "list": [
+      {
+        "id": 1,
+        "imgUrl": "https://pic.pushplus.plus/1/Ft1kme4xCSOfBKsniVQR-WDa2wrs.png@p",
+        "thumbnail": "https://pic.pushplus.plus/1/Ft1kme4xCSOfBKsniVQR-WDa2wrs.png@s",
+        "createTime": "2026-05-09 14:44:40"
+      }
+    ]
+  }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+pageNum | 数字 | 当前页码
+pageSize | 数字 | 分页大小
+total | 数字 | 总行数
+pages | 数字 | 总页数
+list | 数组 | 图片列表
+
+- 图片列表字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 图片 id
+imgUrl | 字符串 | 图片地址
+thumbnail | 字符串 | 缩略图地址
+createTime | 字符串 | 创建时间
+
+### 4. 删除图片
+- 请求地址：https://www.pushplus.plus/api/open/userImage/delete?id=1
+- 请求方式：DELETE
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数：url 传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- | --- | ---
+id | 是 | 无 | 图片 id
+
+- 说明：主动删除图片；未删除的图片默认 30 天后由系统自动清理。
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功"
+}
+```

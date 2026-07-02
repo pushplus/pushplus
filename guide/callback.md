@@ -6,6 +6,10 @@
 
 ## 回调设置
 &nbsp;&nbsp;&nbsp;&nbsp;在公众号“pushplus 推送加”的菜单“功能”->“个人中心”->"功能设置"->"回调地址"，可以设置接收回调消息的地址。
+请确保回调地址真实有效，并在收到请求后响应返回 `{"code": 200, "msg": "success"}` ，保存时会进行校验。
+
+![](../images/callback-c1.png)
+
 
 ## 回调内容
 &nbsp;&nbsp;&nbsp;&nbsp;如请求时带有callbackUrl参数，异步发送消息完成后将会发送一个post请求到回调地址上。

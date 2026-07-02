@@ -5,7 +5,7 @@
 
 ## 会员特权
 #### 直接显示纯文本内容
-会员用户使用企业微信机器人在发送模板为txt的情况下，如果消息标题+消息内容文字小于1900个字的话，消息会直接以文字的形式发送。其他情况下会使用图文的方式发送。\
+会员用户使用企业微信机器人在发送模板为txt的情况下，消息会直接以文字的形式发送。其他情况下会使用图文的方式发送。\
 效果如下：
 
 ![](../images/cp_txt.png)
@@ -21,7 +21,7 @@
 
 #### 三、复制webhook地址
 　&emsp;&emsp;复制保存好创建好机器人的Webhook地址，后续配置中需要使用。
-![](../images/image_07f83211.png)
+![](../images/2.webp)
 
 #### 四、在pushplus中配置webhook
 1. 打开“pushplus 推送加”的公众号，进入公众号菜单上的“功能”->“个人中心”。
@@ -31,22 +31,22 @@
 
 3. 在“webhook”标签页中点击右上角的“新增”按钮。新增一个webhook配置。
 
-![](../images/image_7227adb4.png)
+![](../images/4.webp)
 
 4. 填写具体的信息
 　&emsp;&emsp;其中webhook名称随便填写，仅方便自己区分；
-- webhook编码用于消息发送接口中的“webhook”参数；
+- webhook编码用于消息发送接口中的“option”参数；
 - 请求地址填写第三步中复制的企业微信机器人webhook地址；
 - 类型选择企业微信。
 
-![](../images/image_6d2a6e72.png)
+![](../images/5.webp)
 
 5. 保存完成上述步骤后，相关的配置就完成了。可以在消息发送接口中使用了。
 
 #### 五、接口中使用示例
-　&emsp;&emsp;接口上与微信渠道不同的是新增了两个参数。一个channel参数，填写固定值webhook；另一个webhook参数，填写上一步配置中自己定义的webhook编码。
+　&emsp;&emsp;接口上与微信渠道不同的是新增了两个参数。一个channel参数，填写固定值webhook；另一个option参数，填写上一步配置中自己定义的webhook编码。
 　&emsp;&emsp;具体示例如下：
-- 请求地址：http://www.pushplus.plus/send
+- 请求地址：https://www.pushplus.plus/send
 - 请求方式：POST
 - Content-Type: application/json
 - 请求body内容：
@@ -56,7 +56,7 @@
     "title":"标题",
     "content":"消息内容",
     "channel":"webhook",
-    "webhook":"自定义的webhook编码"
+    "option":"自定义的webhook编码"
 }
 ```
 
@@ -67,4 +67,4 @@
 
 　&emsp;&emsp;其他渠道设置方式大同小异，需要注意的是像钉钉机器人需要在安全设置中选择“自定义关键词”，关键词填写“pushplus”。不然会无法接受到消息。”
 
-![](../images/image_c0e15314.png)
+![](../images/7.webp)

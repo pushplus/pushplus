@@ -19,17 +19,17 @@
 
 ```
 {
-    'token':'{token}',
-    'title':'收款通知',
-    'template':'pay',
-	'content':'{
-                    "amount": "20元",
-                    "payWay": "微信",
-                    "successTime": "2012-11-14 22:40:22",
-                    "orderNo": "254864540",
-                    "name":"商品名称",
-                    "payState": "支付成功"                  
-                }'
+    "token": "{token}",
+    "title": "收款通知",
+    "template": "pay",
+    "content": {
+        "amount": "20元",
+        "payWay": "微信",
+        "successTime": "2012-11-14 22:40:22",
+        "orderNo": "254864540",
+        "name": "商品名称",
+        "payState": "支付成功"
+    }
 }
 ```
 - 说明：template参数指定为pay；具体使用的时候将请求内容中的{token}替换成自己的用户token或消息token
@@ -45,7 +45,7 @@ orderNo |  是 | 订单号
 name |  否 |  商品名称
 payState |  否 | 订单状态
 
-#### 其他请求示例
+#### 模板专用的请求示例
 
 - 请求地址：http://www.pushplus.plus/send/?token={token}&title=收款通知&template=pay
 - 请求方式: POST

@@ -4,6 +4,7 @@
 
 ## 常见问题列表，可解决90%的问题
 
+- [APP上没有通知弹框](/help/app.md)
 - [Get请求导致的问题](/help/get.md)
 - [实名认证相关问题](/help/verify.md)
 - [用户token和消息token有什么区别](/help/token.md)
@@ -50,9 +51,3 @@
 ![](../images/q5.png)
 
 ![](../images/q52.png)
-
-
-
-
-
-

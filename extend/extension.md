@@ -4,14 +4,14 @@
 　&emsp;&emsp;主流的浏览器支持用户安装插件，使用pushplus浏览器插件后可以通过浏览器的通知功能来接收推送的消息。在电脑端无需安装其他软件即可方便地接收消息，更加轻量。
 
 ![](../images/popup.png)
- 
+
 ## 安装
 　&emsp;&emsp;浏览器插件可以在chrome应用商店中搜索“pushplus”进行安装。或者直接下载手动安装。
 
 ### 手动安装
-1. 下载后将压缩包，下载地址：
-- Chrome或Edge浏览器：[https://pcstx.lanzouq.com/iMCc838db0ab](https://pcstx.lanzouq.com/iMCc838db0ab)
-- Firefox浏览器：[https://pcstx.lanzouq.com/iTQaI38dauhc](https://pcstx.lanzouq.com/iMCc838db0ab)
+1. 下载后将压缩包，下载地址（可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本）：
+- Chrome或Edge浏览器：[https://pcstx.lanzouq.com/irMsh38lshxg](https://pcstx.lanzouq.com/irMsh38lshxg)
+- Firefox浏览器：[https://pcstx.lanzouq.com/iTQaI38dauhc](https://pcstx.lanzouq.com/iTQaI38dauhc)
 
 2. 打开浏览器的扩展程序管理页面。
 - chrome浏览器地址：[chrome://extensions/](chrome://extensions/)
@@ -28,6 +28,7 @@
 2. 点击“添加至Chrome”
 
 ![](../images/chrome.png)
+ 
 
 ### Edge浏览器扩展市场
 1. 访问Edge扩展项：[pushplus 推送加插件](https://microsoftedge.microsoft.com/addons/detail/pushplus-%E6%8E%A8%E9%80%81%E5%8A%A0/ekidpillenhajafdnbjnnfbolnmfhgep?hl=zh-CN)
@@ -64,7 +65,7 @@
 
 ## 发送消息
 
-![](../images/extensionmsg.png)
+![](../images/msg.png)
 
 通过pushplus的发送消息接口，渠道参数(channel)指定为extension即可使用浏览器插件渠道发送消息。具体的请求示例如下：
 
@@ -82,9 +83,10 @@
 ```
 - 说明：同样支持一对一、一对多和好友消息。支持一个用户登录多个浏览器设备，一次请求会在多个设备上同时接收到。
 
+
 ## 同步接收微信渠道消息
-　&emsp;&emsp;在“个人中心” -> “功能设置” -> “浏览器插件转发” 中可以开启同步接收微信渠道的消息。也就是发送渠道为微信公众号(wechat)的消息也会在浏览器插件上接收到，无需再请求一次浏览器插件(extension)渠道的消息，并且是不计算浏览器插件(extension)渠道的请求次数的。
- 
+　&emsp;&emsp;在“个人中心” -> “功能设置” -> “微信渠道消息转发” 中可以开启“转发到插件渠道”的消息。也就是发送渠道为微信服务号(wechat)的消息也会在浏览器插件上接收到，无需再请求一次浏览器插件(extension)渠道的消息，并且是不计算浏览器插件(extension)渠道的请求次数的。
+
 ![](../images/forwardextension.png)
 
 ## 相关问题

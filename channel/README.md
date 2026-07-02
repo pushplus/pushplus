@@ -8,11 +8,14 @@
 发送渠道 | 是否免费 | 描述 | 使用教程
 ---| --- |--- | --- | 
 wechat | 免费 | 微信公众号渠道 | [绑定自己的公众号](../extend/mp.md)
-webhook | 免费 | 第三方webhook渠道；企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、server酱、IFTTT、WxPusher；| [webhook渠道配置](../extend/webhook.md)
+webhook | 免费 | 第三方webhook渠道；企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、server酱、IFTTT、WxPusher、自定义；| [webhook渠道配置](../extend/webhook.md)
 cp | 免费 | 企业微信应用渠道 | [企业微信应用配置](../extend/cp.md)
 mail | 免费 | 邮箱渠道 | [邮件渠道使用说明](../extend/mail.md)
 sms | 收费 | 短信渠道。成功发送1条短信需要10积分（0.1元） | [短信渠道配置](../extend/sms.md)
-extension | 免费 | 浏览器插件渠道 | [浏览器插件使用教程](../extend/extension.md)
+voice | 收费 | 语音渠道。接通1次语音呼叫需要30积分（0.3元） | [语音渠道配置](../channel/voice.md)
+extension | 免费 | 插件渠道；支持浏览器扩展插件和桌面应用程序 | [浏览器插件使用教程](../extend/extension.md)   [桌面应用程序使用教程](../extend/desktop.md)
+app | 免费 | App渠道；支持安卓、鸿蒙、iOS系统 | [APP渠道使用说明](../channel/app.md)
+clawbot | 免费 | 微信ClawBot渠道 | [微信ClawBot渠道使用说明](../channel/clawbot.md)
 
 ## 请求示例
 
@@ -26,7 +29,7 @@ extension | 免费 | 浏览器插件渠道 | [浏览器插件使用教程](../ex
     "title":"标题",
     "content":"消息内容",
     "channel":"webhook",
-    "webhook":"pushplus"
+    "option":"pushplus"
 }
 ```
 - 说明：使用webhook渠道的示例。具体请查看对应渠道的配置教程。

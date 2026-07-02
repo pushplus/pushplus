@@ -2,7 +2,7 @@
 
 &emsp;&emsp;为满足不同用户的多样化需求，并保障 pushplus 服务的持续运营，我们推出了 pushplus 会员服务。在保留原有功能的基础上，新增多项专属增值权益。
 
-[点击会员开通](https://www.pushplus.plus/vip.html)
+[点击会员开通](https://www.pushplus.plus/vip.md)
 
 ## 会员价格
 
@@ -17,7 +17,7 @@
 
 ### 二、系统功能额度提升
 每日请求次数、消息长度、接口请求频率、可创建群组数、单群组内用户数等额度均大幅提升。例如：实名用户一天仅可请求200次，会员扩大到2000次。
-具体查看[额度说明](https://www.pushplus.plus/use.html)
+具体查看[额度说明](https://www.pushplus.plus/use.md)
 
 ![](../images/limit.png)
 

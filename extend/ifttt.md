@@ -30,7 +30,7 @@ IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key
 2. 在“webhook”标签页中点击右上角的“新增”按钮。新增一个webhook配置。
 3. 填写具体的信息
 - webhook名称：随便填写，仅方便自己区分；
-- webhook编码：用于消息发送接口中的“webhook”参数；
+- webhook编码：用于消息发送接口中的“option”参数；
 - 请求地址：填写从IFTTT网站中配置的地址；
 - webhook类型：下拉选择“IFTTT”。
 
@@ -39,7 +39,7 @@ IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key
 4. 保存完成上述步骤后，相关的配置就完成了。可以在消息发送接口中使用了。
 
 #### 三、接口中使用示例
-　&emsp;&emsp;接口上与微信渠道不同的是新增了两个参数。一个channel参数，填写固定值webhook；另一个webhook参数，填写上一步配置中自己定义的webhook编码。
+　&emsp;&emsp;接口上与微信渠道不同的是新增了两个参数。一个channel参数，填写固定值webhook；另一个option参数，填写上一步配置中自己定义的webhook编码。
 　&emsp;&emsp;具体示例如下：
 - 请求地址：http://www.pushplus.plus/send
 - 请求方式：POST
@@ -51,7 +51,7 @@ IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key
     "title":"标题",
     "content":"消息内容",
     "channel":"webhook",
-    "webhook":"自定义的webhook编码"
+    "option":"自定义的webhook编码"
 }
 ```
 
@@ -67,4 +67,3 @@ IFTTT的请求地址规则是：https://maker.ifttt.com/trigger/{event}/with/key
 其中value1代表标题，value2代表内容，value3代表消息链接地址。可以在IFTTT的后续动作中使用这三个变量值。
 
 ![](../images/if5.png)
- 

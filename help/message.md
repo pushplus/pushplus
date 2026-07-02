@@ -38,5 +38,17 @@
 
 ![](../images/l3.jpg)
 
+&emsp;&emsp;还有部分用户是设置了微信服务号拒收消息了，然后过了一段时间忘记了或不知道如何取消拒收。
+
+![](../images/message-r0.png)
+
+打开微信，进入“pushplus 推送加”服务号的设置，在“通知消息管理”中检查是否启用“接收通知”选项，具体的通知是否都设置了“接收”。
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+![](../images/message-r1.png)
+![](../images/message-r2.png)
+![](../images/message-r3.png)
+</div>
+ 
 &emsp;&emsp;对于调用接口上的问题，如需要联系pushplus作者，请提供您的请求报文和响应报文，方便快速排查。 \
 &emsp;&emsp;如果您根本不知道什么请求报文，请求地址，那么说明您只是在使用第三方开发好的程序，碰到问题请与第三方开发者联系~
