@@ -14,7 +14,7 @@
 | vivo | <a href="vivomarket://details?id=com.perk.pushplus.app" target="_blank">已上架</a> |已对接 |
 | 华为(安卓) | <a href="appmarket://details?id=com.perk.pushplus.app" target="_blank">已上架</a> | 已对接 |
 | 原生鸿蒙 | <a href="https://appgallery.huawei.com/app/detail?id=com.perk.pushplus.app.hw" target="_blank">已上架</a> | 已对接 |
-| 魅族 | 未上架 |已对接 |
+| 魅族 | <a href="https://app.meizu.com/apps/public/detail?package_name=com.perk.pushplus.app" target="_blank">已上架</a> |已对接 |
 | 谷歌 | <a href="https://play.google.com/store/apps/details?id=com.perk.pushplus.app&pli=1" target="_blank">已上架</a> | 已对接 |
 | 应用宝 |<a href="tmast://appdetails?pname=com.perk.pushplus.app" target="_blank">已上架</a> | - |
 

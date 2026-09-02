@@ -4,25 +4,46 @@
 > perk-job项目仓库：[https://github.com/pushplus/perk-job](https://github.com/pushplus/perk-job)
 
 ## 修改点
-1. 基于xxl-job V2.3.0官方源码修改。
-2. `xxl_job_info`表中新增字段`alarm_pushplus`字段。用于存储单个任务是否开启pushplus推送。
-3. 新增PushplusJobAlarm.java类，实现pushplus告警逻辑。同时配置邮件和pushplus的情况下，优先推送pushplus告警。
-4. 任务详情页面增加“pushplus推送”开关，可以控制单个任务是否启用pushplus推送。
-5. application.properties文件增加pushplus.token和pushplus.topic两个参数。具体配置参数值访问: [https://www.pushplus.plus/](https://www.pushplus.plus/) 获取。
+1. 基于xxl-job V3.4.2官方源码修改。
+2. `xxl_job_info` 表新增 PushPlus 相关字段，用于按任务控制是否推送，以及发送渠道、渠道配置、预处理编码。
+3. 新增 `PushplusJobAlarm`，任务失败时按配置调用 PushPlus 发送告警。
+4. 任务新增/编辑页增加「pushplus推送」开关，可选择发送渠道、填写渠道配置和预处理编码。
+5. `application.properties` 增加 PushPlus 全局配置：`pushplus.token`、`pushplus.topic`、`pushplus.channel`、`pushplus.option`、`pushplus.pre`。参数说明见 [PushPlus 消息接口文档](https://www.pushplus.plus/doc/guide/api.md)。
+
 
 ## 使用方式
-1. 执行新增字段SQL语句。
-```
+1. 初始化或升级数据库。新库直接执行 `doc/db/tables_xxl_job.sql`；已有库执行 `doc/db/pushplus.sql`：
+
+```sql
 ALTER TABLE `xxl_job_info`
     ADD COLUMN `alarm_pushplus` int NULL DEFAULT 0 COMMENT '是否启用pushplus推送；0否，1是' AFTER `alarm_email`;
+
+ALTER TABLE `xxl_job_info`
+    ADD COLUMN `alarm_pushplus_channel` varchar(128) NULL DEFAULT NULL COMMENT 'pushplus发送渠道' AFTER `alarm_pushplus`,
+    ADD COLUMN `alarm_pushplus_option` varchar(255) NULL DEFAULT NULL COMMENT 'pushplus渠道配置' AFTER `alarm_pushplus_channel`,
+    ADD COLUMN `alarm_pushplus_pre` varchar(128) NULL DEFAULT NULL COMMENT 'pushplus预处理编码' AFTER `alarm_pushplus_option`;
 ```
-2. 从pushplus官方（[https://www.pushplus.plus/](https://www.pushplus.plus/) ）获取自己的token，如需要多人接收还需创建群组，获取群组编码。
-3. 在application.properties中pushplus.token填入自己的token。如需群发在pushplus.topic填入创建的群组编码。
+
+2. 在 [pushplus 官网](https://www.pushplus.plus/) 获取 token。如需群发，创建群组并获取群组编码；如需 webhook / 企业微信 / 邮箱等渠道，在个人中心配置渠道编码；会员可配置预处理编码。
+
+3. 在 `perk-job-admin/src/main/resources/application.properties` 中填写全局配置：
+
+```properties
+### pushplus
+pushplus.token=你的token
+pushplus.topic=群组编码（可选）
+### wechat / app / extension / webhook / clawbot / qq / cp / mail / sms / voice，多个渠道用逗号分隔
+pushplus.channel=wechat
+### webhook、企业微信应用、邮箱等渠道编码，多个渠道时与 channel 一一对应
+pushplus.option=
+### 预处理编码，会员可用
+pushplus.pre=
+```
 
 ![项目设置](../images/project.png)
 
 5. 编译perk-job-admin项目，打成jar包。
-6. 运行项目，命令：nohup java -jar perk-job-admin-2.3.0.jar > /dev/null 2>&1&
+6. 运行项目，命令：nohup java -jar perk-job-admin-3.4.2.jar > /dev/null 2>&1&
 7. 访问系统，正常创建需要的定时任务。在任务详情页面勾选“pushplus推送”选项。
 
 ![任务](../images/job.png)

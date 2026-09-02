@@ -1,6 +1,15 @@
-# pushplus 消息接口文档 V1.14
+# pushplus 消息接口文档 V1.17
 
-> 1.13 接口更新日期：2026-03-27\
+::: details 点击展开版本更新日志
+
+> 1.17 接口更新日期：2026-08-26\
+> 增加QQ机器人渠道
+>
+> 1.16 接口更新日期：2026-08-06\
+> 消息模板增加form（push表单）
+> 对应增加pushId参数，传递表单编码
+>
+> 1.15 接口更新日期：2026-03-27\
 > 增加微信ClawBot渠道
 >
 > 1.13 接口更新日期：2025-12-26\
@@ -53,6 +62,7 @@
 >
 > 1.0 接口更新日期：2020-06-01\
 > 支持多种请求方式，基于不同模板展示不同内容
+:::
 
 [[toc]]
 
@@ -80,22 +90,26 @@ channel |  否 | wechat | 发送渠道
 option | 否 | 无 | 渠道配置参数(原webhook参数)
 callbackUrl | 否 | 无 | 发送结果回调地址
 timestamp | 否 | 无 | 毫秒时间戳。格式如：1632993318000。服务器时间戳大于此时间戳，则消息不会发送
-to | 否 | 无 | 好友令牌，微信公众号渠道填写好友令牌，企业微信渠道填写企业微信用户id。多人用逗号隔开，实名用户最多10人，会员100人。
+to | 否 | 无 | 好友令牌，微信公众号渠道、QQ机器人渠道填写好友令牌，企业微信渠道填写企业微信用户id。多人用逗号隔开，实名用户最多10人，会员100人。QQ机器人发送到群时不可与 to、topic 同时使用。
 pre | 否 | 无 | 预处理编码。仅供会员使用。可提前自定义代码来修改消息内容。具体用法参考：[预处理信息配置](../function/pre.md)
+pushId | 否 | 无 | 推送表单/文档/表格。template=form 时必填，传表单编码（formCode）；template=doc 时必填，传文档编码（docCode）；template=excel 时必填，传表格编码（docCode）
 
 - 发送渠道（channel）枚举
 
 发送渠道 | 是否免费 | 描述
 ---| --- |--|
 wechat | 免费 | 微信公众号
+app | 免费 | App渠道；支持安卓、鸿蒙、iOS系统；具体参考[APP渠道使用说明](../channel/app.md)
+extension | 免费 | 插件，支持浏览器扩展插件和桌面应用程序；具体参考[浏览器插件使用教程](../extend/extension.md) [桌面应用程序使用教程](../extend/desktop.md)
 webhook | 免费 | 第三方webhook；企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、server酱、IFTTT、WxPusher；[webhook机器人推送](../extend/webhook.md)
+clawbot | 免费 | 微信ClawBot；具体参考[微信ClawBot渠道使用说明](../channel/clawbot.md)
+qq | 免费 | QQ机器人；支持发给自己和QQ群；具体参考[QQ机器人渠道使用说明](../channel/qq.md)
 cp | 免费 | 企业微信应用；具体参考[企业微信应用推送](../extend/cp.md)
 mail | 免费 | 邮箱；具体参考[邮件渠道使用说明](../extend/mail.md)
 sms | 收费 | 短信；成功发送1条短信需要10积分（0.1元）;具体参考[短信渠道配置](../extend/sms.md)
 voice | 收费 | 语音；收费使用，1条语音呼叫扣减30积分（0.3元）;具体参考[语音渠道配置](../channel/voice.md)
-extension | 免费 | 插件，支持浏览器扩展插件和桌面应用程序；具体参考[浏览器插件使用教程](../extend/extension.md) [桌面应用程序使用教程](../extend/desktop.md)
-app | 免费 | App渠道；支持安卓、鸿蒙、iOS系统；具体参考[APP渠道使用说明](../channel/app.md)
-clawbot | 免费 | 微信ClawBot；具体参考[微信ClawBot渠道使用说明](../channel/clawbot.md)
+
+
 
 - 模板（template）枚举。默认使用html模板
 
@@ -109,9 +123,12 @@ cloudMonitor | 阿里云监控报警定制模板;[阿里云监控](../extend/clo
 jenkins | jenkins插件定制模板;[jenkins插件](../extend/jenkins.md)
 route | 路由器插件定制模板;[路由器插件](../extend/route.md)
 pay | 支付成功通知模板;[支付成功模板教程](../extend/pay.md)
+form | push表单模板;[push表单](https://www.pushplus.plus/push/pushform)
+doc | push文档模板;[push文档](https://www.pushplus.plus/push/pushdoc)
+excel | push表格模板;[push表格](https://www.pushplus.plus/push/pushtable)
  
 - option参数说明\
-原webhook参数。cp渠道，webhook渠道，mail渠道需要填写对应渠道的渠道编码。渠道编码需提前在个人中心的渠道设置中新增。
+原webhook参数。cp渠道、webhook渠道、mail渠道、qq渠道需要填写对应渠道的渠道编码。渠道编码需提前在个人中心的渠道设置中新增。qq渠道不填 option 时发给自己；填写配置编码则发送到对应QQ群。
 
 - 响应内容\
 　&emsp;&emsp;原本接口采用同步模式，直接返回发送结果。现在已调整为异步返回结果，同步响应状态只代表收到请求，将会异步处理消息。\
@@ -196,11 +213,12 @@ topic |  否 | 无 | 群组编码，不填仅发送给自己；channel为webhook
 template |  否 | html | 发送模板
 callbackUrl | 否 | 无 | 发送结果回调地址
 timestamp | 否 | 无 | 毫秒时间戳。格式如：1632993318000。服务器时间戳大于此时间戳，则消息不会发送
-to | 否 | 无 | 好友令牌，微信公众号渠道填写好友令牌，企业微信渠道填写企业微信用户id。多人用逗号隔开，实名用户最多10人，会员100人。
+to | 否 | 无 | 好友令牌，微信公众号渠道、QQ机器人渠道填写好友令牌，企业微信渠道填写企业微信用户id。多人用逗号隔开，实名用户最多10人，会员100人。QQ机器人发送到群时不可与 to、topic 同时使用。
 pre | 否 | 无 | 预处理编码。仅供会员使用。可提前自定义代码来修改消息内容。具体用法参考：[预处理信息配置](../function/pre.md)
+pushId | 否 | 无 | 推送表单/文档/表格。template=form 时必填，传表单编码（formCode）；template=doc 时必填，传文档编码（docCode）；template=excel 时必填，传表格编码（docCode）
  
 - option参数说明\
-原webhook参数。cp渠道，webhook渠道，mail渠道需要填写对应渠道的渠道编码。渠道编码需提前在个人中心的渠道设置中新增。
+原webhook参数。cp渠道、webhook渠道、mail渠道、qq渠道需要填写对应渠道的渠道编码。渠道编码需提前在个人中心的渠道设置中新增。qq渠道不填 option 时发给自己；填写配置编码则发送到对应QQ群。
 
 - 响应内容\
 　&emsp;&emsp;根据请求的渠道数量，返回多个消息流水号。使用消息流水号查询最终发送结果。
@@ -385,7 +403,7 @@ GET请求受限于URL长度，content参数内容不宜太长。大段内容请�
     "template":"html"
 }
 ```
-- 说明：好友消息和群组消息不能同时使用，群组消息优先级大于好友消息，请勿同时填写to和topic参数。to参数支持微信公众号渠道，邮件渠道和企业微信渠道，企业微信渠道填写企业微信用户id。<br/>
+- 说明：好友消息和群组消息不能同时使用，群组消息优先级大于好友消息，请勿同时填写to和topic参数。to参数支持微信公众号渠道、邮件渠道、企业微信渠道和QQ机器人渠道，企业微信渠道填写企业微信用户id。<br/>
 
 #### 示例十一，使用邮件渠道的例子
 - 请求地址：http://www.pushplus.plus/send
@@ -486,3 +504,54 @@ GET请求受限于URL长度，content参数内容不宜太长。大段内容请�
 2. 按请求中渠道数量计算请求次数。比如一个请求中填写三个渠道，算三次请求次数，而不是一次。
 3. 与普通的发送消息接口差异：channel参数和option参数可以用逗号隔开来支持多个渠道。
 4. option参数需要与channel参数上渠道一一对应。就上相关渠道不需要option参数也需要逗号隔开。比如：channel: "wechat,webhook,cp", option: ",config1,config2"
+
+
+#### 示例十四，发送push表单的例子
+- 请求地址：http://www.pushplus.plus/send
+- 请求方式：POST
+- 请求内容：
+
+```
+{
+    "token":"{token}",
+    "title":"push表单demo",
+    "content":"push表单demo",
+    "template":"form",
+    "pushId":"YpRUxav9"
+}
+```
+- 说明：需先到push表单中创建表单，获取pushId(表单编码)，然后才能进行发送。
+
+#### 示例十五，使用QQ机器人渠道的例子
+- 请求地址：http://www.pushplus.plus/send
+- 请求方式：POST
+- 发给自己：
+
+```
+{
+    "token":"{token}",
+    "title":"标题",
+    "content":"消息内容",
+    "channel":"qq",
+    "template":"txt"
+}
+```
+
+- 发送到QQ群（option 填写预先配置的群配置编码）：
+
+```
+{
+    "token":"{token}",
+    "title":"标题",
+    "content":"消息内容",
+    "channel":"qq",
+    "option":"qqgroup",
+    "template":"markdown"
+}
+```
+
+- 说明：
+1. 需先在个人中心->渠道配置->QQ机器人中完成绑定。不填 option 时发给自己；填写 option 则发送到对应QQ群。
+2. 发送到QQ群时不支持同时指定 topic 或 to。一对多、好友消息请不要填写 option。
+3. 建议使用 txt 或 markdown 模板。txt 会完整展示正文；markdown 走 QQ 原生 Markdown（不支持代码块和 HTML）。其他模板仅摘要展示，详情需点开链接查看。
+4. 渠道值使用 `qq`。具体绑定和群配置步骤见[QQ机器人渠道使用说明](../channel/qq.md)。

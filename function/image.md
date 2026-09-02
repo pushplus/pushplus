@@ -24,6 +24,9 @@
 
 ## 接口调用
 
+&emsp;&emsp;推荐使用官方 [pushplus SDK](../guide/sdk.md)，而不是自行编写 HTTP 请求代码。SDK 已封装 AccessKey 刷新、上传图片、发送消息等常见场景，可降低开发成本和出错概率。
+
+
 &emsp;&emsp;程序化上传时：先在 pushplus 侧取七牛上传凭证，再把文件发到七牛；列表与删除仍走 pushplus 接口。完整字段与示例见文末文档链接。
 
 **前置条件**：除「步骤 ② 上传到七牛」外，调用 pushplus 接口时均须在请求头携带 `access-key`。获取方式：[一. 获取AccessKey](../guide/openApi.html#一-获取accesskey)。

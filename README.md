@@ -5,17 +5,17 @@
 > **微信服务号：pushplus 推送加** \
 > **QQ交流群：28619686 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=t9IbRihvvusEIo7r6bgz-7QgEPOaH0OU&jump_from=webapi">![pushplus用户交流群](./images/group.png)</a>** \
 > **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 161672256 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=NQsL2uotO-d-i2uMYa-HiypRHc7IIs2z&jump_from=webapi">![pushplus用户交流2群](./images/group.png)</a>** \
->**有问题直接看[常见问题](/help/README.md)，能解决90%的疑问！** \
-> **联系我们：[联系我们](/introduce/contact.md)** 
+> **联系我们：[联系我们](/introduce/contact.md)** \
+> **智能助手：[智能助手](https://helper.pushplus.plus/)**
 
 <div style="font-size:1.17em;font-weight:bold;margin:16px 0">
-
-如只是碰到[收不到消息](/help/message.md)，[账号被封](/help/lockdown.md)，[请求限制](/help/limit.md)等使用问题，请自行查看[常见问题](https://www.pushplus.plus/doc/help/)，里面已详细的描述了如何解决！<font color=#FF0000>加作者微信也没用，并不会直接告诉你答案和原因，还是让你看这些文档！！！</font>
+   
+  有问题请使用[智能助手](https://helper.pushplus.plus/)咨询。如只是碰到[收不到消息](/help/message.md)，[账号被封](/help/lockdown.md)，[请求限制](/help/limit.md)等使用问题，请自行查看[常见问题](/help.md)，里面已详细的描述了如何解决！
 
 </div>
 
 ## 一. 引言
-　&emsp;&emsp;pushplus(推送加)是一个集成了微信、短信、语音、邮件、企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、浏览器插件、桌面应用程序、App等渠道的实时消息推送平台。只需要调用简单的API，即可帮您迅速完成消息的推送，使用简单方便。
+　&emsp;&emsp;pushplus(推送加)是一个集成了微信、短信、语音、邮件、微信ClawBot、QQ、企业微信、钉钉、飞书、bark、Gotify、腾讯轻联、集简云、浏览器插件、桌面应用程序、App等渠道的实时消息推送平台。只需要调用简单的API，即可帮您迅速完成消息的推送，使用简单方便。
 
 ## 二. 功能架构图
 　&emsp;&emsp;pushplus的功能如下图所示，pushplus本身仅实现最核心的推送功能，将不同类型的消息推送到各种渠道上。其他功能有第三方应用来实现，目前已有大量的第三方程序、脚本、应用与pushplus做了集成。

@@ -1,5 +1,16 @@
-# pushplus 开放接口文档 V1.14
+# pushplus 开放接口文档 V1.17
 
+::: details 点击展开版本更新日志
+
+> 1.17 接口更新日期：2026-08-26\
+> 增加QQ机器人渠道相关接口
+>
+> 1.16 接口更新日期：2026-08-17\
+> 增加好友黑名单和群组订阅人黑名单相关接口
+>
+> 1.15 接口更新日期：2026-08-07\
+> 个人资料详情接口返回会员信息和是否实名
+>
 > 1.14 接口更新日期：2026-05-09\
 > 增加图片服务相关接口
 >
@@ -53,7 +64,13 @@
 > 1.0 接口更新日期：2021-12-21\
 > 通过accessKey调用消息、用户、群组、渠道配置和功能设置接口
 
+:::
+
+::: details 点击查看目录
+
 [[toc]]
+
+:::
 
 ## 文档说明
 &nbsp;&nbsp;&nbsp;&nbsp;为了更方便的让用户使用pushplus功能，现将原本需要在界面上操作的功能开放出来，包括消息、用户、群组、设置等能力。原本发送消息的接口是通过用户token来调用的，考虑到这种方式安全性较低，容易泄露，所以本次开放的接口采用AccessKey的校验方式。在请求接口的时候，需要在header中带上key名为“access-key”的内容，否则会请求失败。
@@ -173,7 +190,7 @@ list | 数组 | 消息列表
 
 参数名称 | 类型 | 说明
 ---|--- | ---
-channel | 字符串 | 消息发送渠道；<br/>wechat-微信公众号,mail-邮件,cp-企业微信应用,webhook-第三方webhook
+channel | 字符串 | 消息发送渠道；<br/>wechat-微信公众号,mail-邮件,cp-企业微信应用,webhook-第三方webhook,qq-QQ机器人
 messageType | 数字 | 消息类型;1-一对一消息,2-一对多消息
 shortCode | 字符串 | 消息短链码;可用于查询消息发送结果
 title | 字符串 | 消息标题
@@ -287,7 +304,12 @@ data中直接返回当前用户token。
     "email": "admin@xxx.com",
     "emailStatus": 1,
     "birthday": "1990-01-01",
-    "points": 2
+    "points": 2,
+    "verifyStatus": 1,
+    "vipInfo": {
+      "isVip": 1,
+      "lastDay": "2030-10-02"
+    }
   }
 }
 ```
@@ -306,6 +328,16 @@ email |字符串 | 邮箱
 emailStatus | 数字 | 邮箱验证状态；0-未验证，1-待验证，2-已验证
 birthday | 日期 | 生日
 points | 数字 | 用户积分
+verifyStatus | 数字 | 实名状态：0-未实名，1-已实名
+vipInfo | 对象 | 会员信息
+
+- 会员信息对象说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+isVip | 数字 | 是否会员；0-否，1-是
+lastDay | 字符串 | 会员到期日
+
 
 ### 3. 获取解封剩余时间
 - 请求地址：https://www.pushplus.plus/api/open/user/userLimitTime
@@ -344,7 +376,8 @@ userLimitTime | 字符串 | 解封时间
     "wechatSendCount": 283,
     "cpSendCount": 0,
     "webhookSendCount": 19,
-    "mailSendCount": 0
+    "mailSendCount": 0,
+    "qqBotSendCount": 0
   }
 }
 ```
@@ -356,6 +389,7 @@ wechatSendCount | 数字 | 微信公众号渠道请求次数
 cpSendCount | 数字 | 企业微信应用渠道请求次数
 webhookSendCount | 数字 | webhook渠道请求次数
 mailSendCount | 数字 | 邮件渠道请求次数
+qqBotSendCount | 数字 | QQ机器人渠道请求次数
 
 ## 四. 消息token接口
 ### 1. 获取消息token列表
@@ -1040,6 +1074,117 @@ remark |  是 | 无 | 订阅人备注信息；20个字以内
 }
 ```
 
+### 4. 将订阅人加入黑名单
+注：加入后将移出群组，对方无法再加入该群组。积分群组不支持黑名单。不能将自己加入黑名单。
+
+- 请求地址：https://www.pushplus.plus/api/open/topicUser/addBlacklist?topicRelationId=1
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+topicRelationId | 是 | 无 | 用户编号（订阅人列表中的 id 字段）
+
+- 响应内容
+```
+{
+  "code": 200,
+  "data": null,
+  "msg": "执行成功"
+}
+```
+
+### 5. 订阅人黑名单列表
+- 请求地址：https://www.pushplus.plus/api/open/topicUser/blacklistList
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "current": 1,
+  "pageSize": 20,
+  "params": {
+    "topicId": 1
+  }
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+current | 否 | 1 | 当前所在分页数
+pageSize |  否 | 20 | 每页大小，最大值为50
+topicId | 是 | 无 | 群组编号
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功",
+  "data": {
+    "pageNum": 1,
+    "pageSize": 20,
+    "total": 1,
+    "pages": 1,
+    "list": [
+      {
+        "id": 1,
+        "userId": 1322,
+        "nickName": "昵称",
+        "openId": "o0a******wZo",
+        "headImgUrl": "http://thirdwx.qlogo.cn/mmopen/Q3a******32",
+        "createTime": "2026-08-17 10:00:00"
+      }
+    ]
+  }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+pageNum | 数字 | 当前页码
+pageSize | 数字 | 分页大小
+total | 数字 | 总行数
+pages | 数字 | 总页数
+list | 数组 | 黑名单列表
+
+- 黑名单列表字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 黑名单记录ID；解除黑名单时使用
+userId | 数字 | 被拉黑用户ID
+nickName | 字符串 | 昵称
+openId | 字符串 | 用户微信openId
+headImgUrl | 字符串 | 头像url地址
+createTime | 日期 | 拉黑时间
+
+### 6. 解除订阅人黑名单
+注：解除后不会自动恢复群组订阅，对方可重新加入该群组。
+
+- 请求地址：https://www.pushplus.plus/api/open/topicUser/removeBlacklist?id=1
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 黑名单记录ID（黑名单列表中的 id 字段）
+
+- 响应内容
+```
+{
+  "code": 200,
+  "data": null,
+  "msg": "执行成功"
+}
+```
+
 ## 七. 渠道配置接口
 ### 1. 获取webhook列表
 - 请求地址：https://www.pushplus.plus/api/open/webhook/list
@@ -1563,7 +1708,297 @@ haveContextToken | 字符串 | 是否有对话令牌
 type | 字符串 | 消息类型；1-文字，3-语音
 text | 字符串 | 消息内容
 
-## 九. 功能设置接口
+## 九. QQ机器人接口
+注：需先在个人中心->渠道配置->QQ机器人中完成绑定。发送消息时 channel 传 `qq`，option 不填发给自己，填写配置编码则发送到对应QQ群。
+
+### 1. 获取绑定链接
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/getBindLink
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+refresh | 否 | false | 是否强制刷新；true 时会使旧绑定码失效并重新生成
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": {
+        "url": "https://qun.qq.com/q/xxxx",
+        "bindCode": "A3K7M2",
+        "expireSeconds": 300,
+        "botAppId": "1020******",
+        "botName": "pushplus机器人",
+        "botAvatar": "https://xxx/avatar.png"
+    }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+url | 字符串 | 带参分享链接，用于生成扫码二维码。已绑定用户再次获取时可能为空
+bindCode | 字符串 | 绑定码。已是好友时扫码不会触发加好友事件，需私聊发送该绑定码；认领QQ群也使用此码
+expireSeconds | 数字 | 有效期秒数，默认300秒
+botAppId | 字符串 | 为当前用户分配的官方机器人appId
+botName | 字符串 | 机器人名称，用于提示用户添加哪一个机器人
+botAvatar | 字符串 | 机器人头像
+
+### 2. 查询绑定状态
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/botInfo
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": {
+        "isBind": 1,
+        "receiveStatus": 1,
+        "createTime": "2026-08-26 10:00:00",
+        "botInfo": {
+            "botId": "12345678",
+            "username": "pushplus机器人",
+            "avatar": "https://xxx/avatar.png",
+            "appId": "1020******",
+            "shareUrl": "https://qun.qq.com/q/xxxx"
+        }
+    }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+isBind | 数字 | 是否已绑定；0-未绑定，1-已绑定
+receiveStatus | 数字 | 单聊接收状态；1-可接收，0-用户已关闭单聊接收
+createTime | 日期 | 绑定时间
+botInfo | 对象 | 机器人详情，取不到时为空
+
+- 机器人详情字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+botId | 字符串 | 机器人ID
+username | 字符串 | 机器人昵称
+avatar | 字符串 | 机器人头像
+appId | 字符串 | 机器人appId
+shareUrl | 字符串 | 官方分享链接，可用于拉机器人进群
+
+### 3. 解绑QQ机器人
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/unbind
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功"
+}
+```
+
+### 4. 获取已加入的QQ群列表
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/groupList
+- 请求方式：GET
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: 无
+
+- 响应内容
+```
+{
+    "code": 200,
+    "msg": "执行成功",
+    "data": [
+        {
+            "id": 1,
+            "groupOpenId": "C4******ab",
+            "groupRemark": "",
+            "status": 1,
+            "groupName": "pushplus交流群",
+            "groupFingerMemo": "群简介",
+            "groupClassText": "兴趣爱好",
+            "groupTags": ["推送"],
+            "groupMemberNum": 128,
+            "createTime": "2026-08-26 10:12:00"
+        }
+    ]
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | QQ群编号；新增群配置时作为 qqGroupId 使用
+groupOpenId | 字符串 | 群openid
+groupRemark | 字符串 | 群备注
+status | 数字 | 群状态；1-在群，2-群消息接收关闭
+groupName | 字符串 | 群名称，接口未授权时为空
+groupFingerMemo | 字符串 | 群简介
+groupClassText | 字符串 | 群分类
+groupTags | 数组 | 群标签
+groupMemberNum | 数字 | 群成员人数
+createTime | 日期 | 创建时间
+
+### 5. 获取QQ机器人配置列表
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/list
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "current": 1,
+  "pageSize": 20
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+current | 否 | 1 | 当前所在分页数
+pageSize |  否 | 20 | 每页大小，最大值为50
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "请求成功",
+  "data": {
+    "pageNum": 1,
+    "pageSize": 20,
+    "total": 1,
+    "pages": 1,
+    "list": [
+      {
+        "id": 1,
+        "qqName": "交流群推送",
+        "qqCode": "qqgroup",
+        "sendType": 2,
+        "qqGroupId": 1,
+        "groupRemark": "",
+        "groupOpenId": "C4******ab",
+        "groupName": "pushplus交流群",
+        "updateTime": "2026-08-26 11:00:00"
+      }
+    ]
+  }
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+pageNum | 数字 | 当前页码
+pageSize | 数字 | 分页大小
+total | 数字 | 总行数
+pages | 数字 | 总页数
+list | 数组 | 配置列表
+
+- 配置列表字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 配置编号
+qqName | 字符串 | 配置名称
+qqCode | 字符串 | 配置编码；发送消息时作为 option 传入
+sendType | 数字 | 发送类型；2-发到QQ群
+qqGroupId | 数字 | QQ群编号
+groupRemark | 字符串 | 群备注
+groupOpenId | 字符串 | 群openid
+groupName | 字符串 | 群名称，接口未授权时为空
+updateTime | 日期 | 更新时间
+
+### 6. 新增QQ机器人配置
+注：配置用于把消息发送到指定QQ群。发给自己无需创建配置。普通用户最多5个，会员最多30个。同一QQ群不可重复创建。配置编码创建后不可修改。
+
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/add
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "qqName": "交流群推送",
+  "qqCode": "qqgroup",
+  "qqGroupId": 1
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+qqName | 是 | 无 | 配置名称；最多64个字符
+qqCode | 是 | 无 | 配置编码；最多32个字符，仅支持字母、数字、下划线和中划线
+qqGroupId | 是 | 无 | QQ群编号，取自群列表接口中的 id。该群需在群内允许机器人主动消息
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功"
+}
+```
+
+### 7. 修改QQ机器人配置
+注：配置编码(qqCode)不允许修改，避免已在使用的 option 失效。
+
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/edit
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "id": 1,
+  "qqName": "交流群推送",
+  "qqGroupId": 1
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 配置编号
+qqName | 是 | 无 | 配置名称；最多64个字符
+qqGroupId | 是 | 无 | QQ群编号
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功"
+}
+```
+
+### 8. 删除QQ机器人配置
+- 请求地址：https://www.pushplus.plus/api/open/qqBot/delete?id=1
+- 请求方式：DELETE
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 配置编号
+
+- 响应内容
+```
+{
+  "code": 200,
+  "msg": "执行成功"
+}
+```
+
+## 十. 功能设置接口
 ### 1. 获取默认配置列表
 - 请求地址：https://www.pushplus.plus/api/open/setting/listUserDefault
 - 请求方式：POST
@@ -1619,7 +2054,7 @@ list | 数组 | 邮箱列表
 参数名称 | 类型 | 说明
 ---|--- | ---
 id | 数字 | 默认配置编号
-channel | 字符串 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+channel | 字符串 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件,qq-QQ机器人
 channelTxt | 字符串 | 渠道名称
 updateTime | 字符串 | 更新时间
 name | 字符串 | 令牌名称
@@ -1656,7 +2091,7 @@ id | 是 | 无 | 默认配置编号
 参数名称 | 类型 | 说明
 ---|--- | ---
 id | 数字 | 默认配置编号
-channel | 字符串 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+channel | 字符串 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件,qq-QQ机器人
 option | 字符串 | 渠道参数
 pre | 字符串 | 预处理编码
 updateTime | 字符串 | 更新时间
@@ -1681,7 +2116,7 @@ tokenId | 数字 | 消息令牌id；用户令牌为0
 
 参数名称 | 是否必填 | 默认值 | 说明
 ---|--- |--- | ---
-channel | 是 | 无 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+channel | 是 | 无 | 渠道编码；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件,qq-QQ机器人
 option | 是 | 无 | 渠道参数
 pre | 是 | 无| 预处理编码
 tokenId | 是 | 无| 消息令牌id；用户令牌为0
@@ -1715,7 +2150,7 @@ tokenId | 是 | 无| 消息令牌id；用户令牌为0
 参数名称 | 是否必填 | 默认值 | 说明
 ---|--- |--- | ---
 id | 是 | 无 | 默认配置编号
-channel | 是 | 无 | 默认渠道；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件
+channel | 是 | 无 | 默认渠道；wechat-微信公众号,cp-企业微信应用,webhook-第三方webhook,mail-邮件,sms-短信,voice-语音,extension-插件,qq-QQ机器人
 option | 否 | 无 | 渠道参数；webhook和cp渠道需要填写具体的webhook编号或自定义编码
 pre | 否 | 无 | 预处理编码
 tokenId | 是 | 无 | 消息令牌id；用户令牌为0
@@ -1830,7 +2265,7 @@ forward | 是 | 无 | 微信渠道消息是否同步浏览器扩展插件接收�
 }
 ```
 
-## 十. 好友功能接口
+## 十一. 好友功能接口
 ### 1. 获取个人二维码
 - 请求地址：https://www.pushplus.plus/api/open/friend/getQrCode?appId=wx3b5738bdds3c180&content=123&second=604800&scanCount=-1
 - 请求方式：GET
@@ -1973,7 +2408,112 @@ remark |  是 | 无 | 好友备注
 }
 ```
 
-## 十一. 预处理信息接口
+### 5. 将好友加入黑名单
+注：加入后将解除双方好友关系，对方无法再添加你。不能将自己加入黑名单，仅可将已有好友加入黑名单。
+
+- 请求地址：https://www.pushplus.plus/api/open/friend/addBlacklist?friendId=1
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+friendId | 是 | 无 | 好友id（好友列表中的 friendId 字段）
+
+- 响应内容
+```
+{
+  "code": 200,
+  "data": null,
+  "msg": "执行成功"
+}
+```
+
+### 6. 好友黑名单列表
+- 请求地址：https://www.pushplus.plus/api/open/friend/blacklistList
+- 请求方式：POST
+- Content-Type: application/json
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数:
+```
+{
+  "current": 1,
+  "pageSize": 20
+}
+```
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+current | 否 | 1 | 当前所在分页数
+pageSize |  否 | 20 | 每页大小，最大值为50
+
+- 响应内容
+```
+{
+  "code": 200,
+  "data": {
+    "list": [
+      {
+        "id": 4,
+        "friendId": 1322,
+        "nickName": "昵称",
+        "headImgUrl": "",
+        "createTime": "2026-08-17 10:00:00"
+      }
+    ],
+    "pageNum": 1,
+    "pageSize": 20,
+    "pages": 1,
+    "total": 1
+  },
+  "msg": "执行成功"
+}
+```
+- 响应字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+pageNum | 数字 | 当前页码
+pageSize | 数字 | 分页大小
+total | 数字 | 总行数
+pages | 数字 | 总页数
+list | 数组 | 黑名单列表
+
+- 黑名单列表字段说明
+
+参数名称 | 类型 | 说明
+---|--- | ---
+id | 数字 | 黑名单记录ID；解除黑名单时使用
+friendId | 数字 | 被拉黑好友ID
+nickName | 字符串 | 昵称
+headImgUrl | 字符串 | 头像
+createTime | 日期 | 拉黑时间
+
+### 7. 解除好友黑名单
+注：解除后不会自动恢复好友关系，需重新扫码添加。
+
+- 请求地址：https://www.pushplus.plus/api/open/friend/removeBlacklist?id=1
+- 请求方式：POST
+- (header) access-key: d7b******62f(获取到的AccessKey)
+- 请求参数: url传参
+- 请求参数说明
+
+参数名称 | 是否必填 | 默认值 | 说明
+---|--- |--- | ---
+id | 是 | 无 | 黑名单记录ID（黑名单列表中的 id 字段）
+
+- 响应内容
+```
+{
+  "code": 200,
+  "data": null,
+  "msg": "执行成功"
+}
+```
+
+## 十二. 预处理信息接口
 注：预处理信息需开通会员才能使用
 
 ### 1. 获取预处理信息列表
@@ -2191,7 +2731,7 @@ message | 是 | 无 | 测试消息内容
 
 data中返回预处理后的消息内容。
 
-## 十二. 图片服务接口
+## 十三. 图片服务接口
 
 &nbsp;&nbsp;&nbsp;&nbsp;用于获取七牛云上传凭证、上传图片、查询已上传列表及主动删除。上传时使用「获取上传凭证」返回的 `uploadUrl` 与 `uploadToken`，按七牛云表单上传规范提交文件。仅支持图片类型，30 天有效期。
 

@@ -1,7 +1,7 @@
 # 常用工具
 
 ### 1. 在线HTTP请求
-[http://www.jsons.cn/httpurl/](http://www.jsons.cn/httpurl/)
+[https://request.perk-net.com/http](https://request.perk-net.com/http)
 
 模拟程序发送HTTP请求，方便在线调用pushplus接口来验证结果。
 
@@ -16,7 +16,7 @@
 格式化Json数据内容，校验Json数据是否有错，
 
 ### 4. url编码解码
-[http://www.ab173.com/enc/urlencode.php](http://www.ab173.com/enc/urlencode.php)
+[https://toolb.cn/urlencode](https://toolb.cn/urlencode)
 
 pushplus接口需要将带有中文的url地址编码后发送请求。
 

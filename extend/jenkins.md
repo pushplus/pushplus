@@ -16,19 +16,17 @@
  &emsp;&emsp;最后需要您的token和群组编码，在后续jenkins配置中使用。
 
 ### 3. 安装jenkins插件
-&emsp;&emsp;目前插件并没有发布到jenkins的官方插件库中，所以需要手动下载安装。\
-&emsp;&emsp;jenkins插件v1.5下载地址：[https://www.123865.com/s/3UMBjv-XEYUh](https://www.123865.com/s/3UMBjv-XEYUh) \
-（可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本）
+&emsp;&emsp;目前插件已经发布到jenkins的官方插件库中。插件地址：[https://plugins.jenkins.io/pushplus/](https://plugins.jenkins.io/pushplus/)
  
- &emsp;&emsp;下载完成之后，到jenkins中安装插件。手动安装点击： 系统管理（Manage Jeknis）->插件管理（Manage Plugins）->高级->上传插件 ；选择刚刚下载好的插件文件，点击上传。
+ &emsp;&emsp;安装直接到jenkins中: 系统管理（Manage Jeknis）->插件管理（Manage Plugins）->Available plugins 里面搜索“pushplus”，选中后点击安装。
+ 
+![](../images/jenkins-jenkins0.png)
 
 &emsp;&emsp;安装完成之后，需要重启jenkins，让插件生效。
 
-![](../images/jenkins3.jpg)
+&emsp;&emsp;重启jenkins后，在插件管理->已安装 中能找到“pushplus Notification”就代表安装成功啦！
 
-&emsp;&emsp;重启jenkins后，在插件管理->已安装 中能找到“pushPlus Plugin”就代表安装成功啦！
-
-![](../images/jenkins4.jpg)
+![](../images/jenkins-jenkins01.png)
 
 ### 4. 配置jenkins
  &emsp;&emsp;插件安装完成之后还需要配置一些参数，才能正常推送消息。
@@ -109,4 +107,4 @@ post {
 }
 ```
 
-后续会将插件代码开源出来，供大家学习参考。
+插件代码已开源，github项目地址：[https://github.com/jenkinsci/pushplus-plugin](https://github.com/jenkinsci/pushplus-plugin)

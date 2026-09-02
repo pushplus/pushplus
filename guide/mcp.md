@@ -29,7 +29,8 @@ Linux/Mac
         "@perk-net/pushplus-mcp-server"
       ],
       "env": {
-        "PUSHPLUS_TOKEN": "您的Token"
+        "PUSHPLUS_TOKEN": "您的Token",
+        "PUSHPLUS_SECRET_KEY": "您的SecretKey"
       }
     }
   }
@@ -49,7 +50,8 @@ Windows
         "@perk-net/pushplus-mcp-server"
       ],
       "env": {
-        "PUSHPLUS_TOKEN": "您的Token"
+        "PUSHPLUS_TOKEN": "您的Token",
+        "PUSHPLUS_SECRET_KEY": "您的SecretKey"
       }
     }
   }
@@ -57,6 +59,7 @@ Windows
 ```
 
 - PUSHPLUS_TOKEN 替换为从pushplus官网上获取到的消息token或用户token
+- PUSHPLUS_SECRET_KEY 替换为pushplus开发设置中的SecretKey
 
 ### 2. Java版本
 Java版本需要本地安装JDK21。
@@ -74,10 +77,11 @@ Java版本需要本地安装JDK21。
       "args": [
         "-Dlogging.pattern.console=",
         "-jar",
-        "yourFilePath\\pushplus-mcp-1.0.0.jar"
+        "yourFilePath\\pushplus-mcp-1.0.5.jar"
       ],
       "env": {
-        "PUSHPLUS_TOKEN": "替换为自己的消息token"
+        "PUSHPLUS_TOKEN": "替换为自己的token",
+        "PUSHPLUS_SECRET_KEY": "替换为secretKey"
       }
     }
   }
@@ -85,4 +89,5 @@ Java版本需要本地安装JDK21。
 ```
 
 - PUSHPLUS_TOKEN 替换为从pushplus官网上获取到的消息token或用户token
-- yourFilePath\\pushplus-mcp-1.0.0.jar 修改为自己本地的文件路径
+- PUSHPLUS_SECRET_KEY 替换为pushplus开发设置中的SecretKey
+- yourFilePath\\pushplus-mcp-1.0.5.jar 修改为自己本地的文件路径
