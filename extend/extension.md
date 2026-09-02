@@ -9,7 +9,7 @@
 　&emsp;&emsp;浏览器插件可以在chrome应用商店中搜索“pushplus”进行安装。或者直接下载手动安装。
 
 ### 手动安装
-1. 下载后将压缩包，下载地址（可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本）：
+1. 下载后将压缩包，下载地址（可到[资源下载](https://www.pushplus.plus/download.html)页面下载最新版本）：
 - Chrome或Edge浏览器：[https://pcstx.lanzouq.com/irMsh38lshxg](https://pcstx.lanzouq.com/irMsh38lshxg)
 - Firefox浏览器：[https://pcstx.lanzouq.com/iTQaI38dauhc](https://pcstx.lanzouq.com/iTQaI38dauhc)
 

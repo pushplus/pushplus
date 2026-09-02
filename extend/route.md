@@ -10,7 +10,7 @@
 　&emsp;&emsp;本插件由koolshare论坛的 **[囍冯总囍]** 开发，在此特别感谢！
 
 ## 离线安装包下载
-可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本
+可到[资源下载](https://www.pushplus.plus/download.html)页面下载最新版本
 
 - 0.5版本离线安装包
 

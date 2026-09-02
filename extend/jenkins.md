@@ -5,7 +5,7 @@
 
 ## 使用步骤
 ### 1. 获取token
-&emsp;&emsp;访问网址：[http://www.pushplus.plus/push2.html](http://www.pushplus.plus/push2.md)   使用微信扫码即可登陆。
+&emsp;&emsp;访问网址：[http://www.pushplus.plus/push2.html](http://www.pushplus.plus/push2.html)   使用微信扫码即可登陆。
 
 ### 2. 创建群组（可选配置）
 &emsp;&emsp;如果需要推送给多个人，可以使用pushplus的一对多消息来实现。新建一个群组。群组编码作为群组的唯一标示，后续需要使用。群组名称随意填写。

@@ -8,7 +8,7 @@
 
 ## 使用说明
 1. <font color=#FF0000>个人的、未认证的公众号是不支持消息推送的，请勿绑定。</font>
-2. 需要开通会员才能使用，最多可以绑定5个公众号。开通会员：[http://www.pushplus.plus/vip.html](http://www.pushplus.plus/vip.md)
+2. 需要开通会员才能使用，最多可以绑定5个公众号。开通会员：[http://www.pushplus.plus/vip.html](http://www.pushplus.plus/vip.html)
 3. 解绑请到微信公众号平台进行取消授权操作。
 4. 使用小程序接收通知需要在公众号后台关联“pushplus 推送加”小程序。[操作说明](https://developers.weixin.qq.com/miniprogram/introduction/#%E5%85%AC%E4%BC%97%E5%8F%B7%E5%85%B3%E8%81%94%E5%B0%8F%E7%A8%8B%E5%BA%8F)
 

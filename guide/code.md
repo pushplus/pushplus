@@ -32,7 +32,7 @@
 ```
 
 ### 积分使用和充值
-积分需要使用现金充值来获取。充值地址：[http://www.pushplus.plus/pay.html](http://www.pushplus.plus/pay.md)\
+积分需要使用现金充值来获取。充值地址：[http://www.pushplus.plus/pay.html](http://www.pushplus.plus/pay.html)\
 积分目前可以用来解封账号和创建群组永久二维码。后续还会开发更多使用场景。
 
 ### 实名认证说明

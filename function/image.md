@@ -13,7 +13,7 @@
 
 ## 界面操作说明
 
-&emsp;&emsp;在浏览器打开 [图片服务页面](https://www.pushplus.plus/image.md)，使用 pushplus 账号登录后即可上传与管理图片。
+&emsp;&emsp;在浏览器打开 [图片服务页面](https://www.pushplus.plus/image.html)，使用 pushplus 账号登录后即可上传与管理图片。
 
 1. **上传图片**：按页面上的上传入口选择本地图片文件并提交。
 2. **查看列表**：上传成功后，可在页面中浏览已上传图片（通常为缩略图 + 相关信息）。

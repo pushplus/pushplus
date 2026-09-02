@@ -41,12 +41,12 @@
 各功能均有提供详尽的使用文档和操作说明。系统的功能均有提供开放接口方便与第三方系统的集成对接。
 
 ## 六. 费用说明
-&emsp;&emsp;您可以免费使用我们绝大部分的功能，像短信、语音等有较大成本的推送渠道按量计费。具体可以在[额度说明](https://www.pushplus.plus/use.md)页面查看。另外为了满足发送量较大的用户，推出了会员服务。具体可以查看[会员功能说明](/function/vip.md)
+&emsp;&emsp;您可以免费使用我们绝大部分的功能，像短信、语音等有较大成本的推送渠道按量计费。具体可以在[额度说明](https://www.pushplus.plus/use.html)页面查看。另外为了满足发送量较大的用户，推出了会员服务。具体可以查看[会员功能说明](/function/vip.md)
+
 
 ## 文档目录
 
 ### 简介
-- [介绍](/) - pushplus消息推送平台介绍
 - [服务协议](/introduce/service.md) - 服务协议
 - [用户隐私协议](/introduce/privacy.md) - 用户隐私协议
 - [联系我们](/introduce/contact.md) - 联系方式
@@ -55,6 +55,7 @@
 - [一对一消息](/function/one.md) - 一对一推送功能
 - [一对多消息](/function/more.md) - 一对多推送功能
 - [好友消息](/function/friend.md) - 好友功能介绍
+- [发邮件来推送消息](/function/mail.md) - 邮件推送消息功能
 - [积分群组](/function/paidTopic.md) - 积分群组功能
 - [文本命令](/function/txt.md) - 文本处理功能
 - [图片服务](/function/image.md) - 图片上传与管理
@@ -73,26 +74,28 @@
 - [SDK说明](/guide/sdk.md) - 官方 SDK 使用说明
 - [Demo代码](/guide/demo.md) - 各种语言的代码示例
 - [pushplus MCP Server](/guide/mcp.md) - MCP Server 配置
+- [pushplus Skill 使用说明](/guide/skill.md) - Skill 使用说明
 
 ### 渠道配置
 - [发送渠道说明](/channel/) - 消息发送渠道说明
-- [短信渠道配置](/extend/sms.md) - 短信集成
-- [语音渠道配置](/channel/voice.md) - 语音渠道
 - [绑定自己的微信公众号](/extend/mp.md) - 微信公众号集成
-- [webhook渠道配置](/extend/webhook.md) - WebHook集成
-- [邮件渠道配置](/extend/mail.md) - 邮件集成
-- [企业微信应用配置](/extend/cp.md) - 企业微信集成
+- [APP渠道使用说明](/channel/app.md) - App 渠道
 - [浏览器插件使用教程](/extend/extension.md) - 浏览器插件
 - [桌面应用程序使用教程](/extend/desktop.md) - 桌面客户端
-- [APP渠道使用说明](/channel/app.md) - App 渠道
+- [webhook渠道配置](/extend/webhook.md) - WebHook集成
 - [微信ClawBot渠道使用说明](/channel/clawbot.md) - ClawBot 渠道
+- [QQ机器人渠道使用说明](/channel/qq.md) - QQ 机器人渠道
+- [企业微信应用配置](/extend/cp.md) - 企业微信集成
+- [邮件渠道配置](/extend/mail.md) - 邮件集成
+- [短信渠道配置](/extend/sms.md) - 短信集成
+- [语音渠道配置](/channel/voice.md) - 语音渠道
 
 ### 消息模板
 - [消息模板说明](/template/) - 消息模板中心
-- [支付成功通知模板](/extend/pay.md) - 支付通知集成
-- [Jenkins插件](/extend/jenkins.md) - Jenkins集成
 - [阿里云监控](/extend/cloudMonitor.md) - 云监控集成
+- [Jenkins插件](/extend/jenkins.md) - Jenkins集成
 - [路由器插件](/extend/route.md) - 路由器插件
+- [支付成功通知模板](/extend/pay.md) - 支付通知集成
 
 ### 扩展应用
 - [xxl-job推送设置](/extend/xxl-job.md) - XXL-Job集成
@@ -104,9 +107,10 @@
 - [调用IFTTT的webhook](/extend/ifttt.md) - IFTTT集成
 - [自定义webhook配置](/extend/diy.md) - 自定义 webhook
 - [使用pushplus接收短信内容](/extend/smsforward.md) - 短信转发到微信
+- [使用「网页侦探」+「pushplus」来监控黄金价格变化](/extend/webdiff.md) - 监控黄金价格
 
 ### 常见问题
-- [常见问题](/help/) - 使用帮助和常见问题
+- [常见问题](/help.md) - 使用帮助和常见问题
 - [APP上没有通知弹框](/help/app.md) - App 通知问题
 - [Get请求导致的问题](/help/get.md) - Get请求问题
 - [实名认证相关问题](/help/verify.md) - 验证功能说明
@@ -119,6 +123,7 @@
 - [如何解封账号](/help/lockdown.md) - 账号封禁说明
 - [一对多消息为什么只有我自己收到](/help/topic.md) - 主题功能说明
 - [提示无用户接收消息](/help/nouser.md) - 无用户问题
+- [发送消息有延迟](/help/delay.md) - 消息延迟收到原因
 - [如何在公众号中显示推送内容](/help/showmessage.md) - 消息展示问题
 - [菜单上的激活消息有什么用](/help/activation.md) - 关于激活消息
 - [是否支持发送图片](/help/image.md) - 图片发送说明
@@ -127,6 +132,17 @@
 - [接口是否支持https](/help/https.md) - HTTPS相关问题
 - [json模板如何正确展示](/help/json.md) - JSON格式说明
 - [pushplus官网](/help/homepage.md) - 主页功能说明
+- [如何注销账户](/help/logout.md) - 注销账户操作
+
+### push生态
+- push表单
+  - [开放接口文档](/ecosystem/form.md)
+  - [push表单提交后推送](/ecosystem/doc/webhook.md)
+- push文档
+  - [开放接口文档](/ecosystem/doc.md)
+- push表格
+  - [开放接口文档](/ecosystem/sheet.md)
+- [改页侦探](https://webdiff.perk-net.com/doc/)
 
 ### 常用工具
 - [常用工具](/tool/index.md) - 在线调试工具

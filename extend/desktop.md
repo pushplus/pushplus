@@ -8,7 +8,7 @@
 
 ## 安装
 
-　&emsp;&emsp;手动下载安装包（可到[资源下载](https://www.pushplus.plus/download.md)页面下载最新版本）。\
+　&emsp;&emsp;手动下载安装包（可到[资源下载](https://www.pushplus.plus/download.html)页面下载最新版本）。\
 Windows系统下载地址：[https://www.123865.com/s/3UMBjv-msYUh](https://www.123865.com/s/3UMBjv-msYUh) \
 MacOS系统下载地址：[https://www.123865.com/s/3UMBjv-tGYUh](https://www.123865.com/s/3UMBjv-tGYUh)
 

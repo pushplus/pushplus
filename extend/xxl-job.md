@@ -8,7 +8,7 @@
 2. `xxl_job_info` 表新增 PushPlus 相关字段，用于按任务控制是否推送，以及发送渠道、渠道配置、预处理编码。
 3. 新增 `PushplusJobAlarm`，任务失败时按配置调用 PushPlus 发送告警。
 4. 任务新增/编辑页增加「pushplus推送」开关，可选择发送渠道、填写渠道配置和预处理编码。
-5. `application.properties` 增加 PushPlus 全局配置：`pushplus.token`、`pushplus.topic`、`pushplus.channel`、`pushplus.option`、`pushplus.pre`。参数说明见 [PushPlus 消息接口文档](https://www.pushplus.plus/doc/guide/api.md)。
+5. `application.properties` 增加 PushPlus 全局配置：`pushplus.token`、`pushplus.topic`、`pushplus.channel`、`pushplus.option`、`pushplus.pre`。参数说明见 [PushPlus 消息接口文档](https://www.pushplus.plus/doc/guide/api.html)。
 
 
 ## 使用方式
