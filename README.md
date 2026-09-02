@@ -77,7 +77,7 @@
 - [pushplus Skill 使用说明](/guide/skill.md) - Skill 使用说明
 
 ### 渠道配置
-- [发送渠道说明](/channel/) - 消息发送渠道说明
+- [发送渠道说明](/channel.md) - 消息发送渠道说明
 - [绑定自己的微信公众号](/extend/mp.md) - 微信公众号集成
 - [APP渠道使用说明](/channel/app.md) - App 渠道
 - [浏览器插件使用教程](/extend/extension.md) - 浏览器插件
@@ -91,7 +91,7 @@
 - [语音渠道配置](/channel/voice.md) - 语音渠道
 
 ### 消息模板
-- [消息模板说明](/template/) - 消息模板中心
+- [消息模板说明](/template.md) - 消息模板中心
 - [阿里云监控](/extend/cloudMonitor.md) - 云监控集成
 - [Jenkins插件](/extend/jenkins.md) - Jenkins集成
 - [路由器插件](/extend/route.md) - 路由器插件
